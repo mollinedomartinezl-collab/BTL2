@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<!--
+  PLANTILLA EDITABLE — instrucciones para quien complete el portafolio:
+  1. Busca el texto resaltado en amarillo (así: [EJEMPLO]) — ahí van los datos exactos
+     (tiempo de experiencia, teléfono, email, Instagram, año).
+  2. Las cajas con borde punteado y la etiqueta "+ FOTO" son espacios para las fotos.
+     Reemplázalas por <img src="ruta-de-la-foto.jpg" alt="..."> cuando tengas las imágenes.
+  3. Cuando todo esté listo, puedes borrar este comentario.
+-->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portafolio BTL — Stephanie Dueri BTL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#1B1330;
+    --bg-soft:#241a3f;
+    --paper:#F6EFE3;
+    --paper-dim:#ece2d0;
+    --ink:#1B1330;
+    --ink-soft:#4a4266;
+    --pink:#E4356B;
+    --mustard:#F0A93B;
+    --teal:#1FA6A0;
+    --edit-bg:#F0A93B;
+    --edit-ink:#1B1330;
+    --font-display:'Bricolage Grotesque', sans-serif;
+    --font-body:'Inter', sans-serif;
+    --font-mono:'JetBrains Mono', monospace;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;} }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--paper);
+    font-family:var(--font-body);
+    line-height:1.5;
+  }
+  a{color:inherit;}
+  :focus-visible{outline:3px solid var(--mustard); outline-offset:3px;}
+
+  mark.edit{
+    background:var(--edit-bg);
+    color:var(--edit-ink);
+    font-family:var(--font-mono);
+    font-weight:700;
+    font-size:0.85em;
+    padding:0.1em 0.4em;
+    border-radius:3px;
+    text-decoration:none;
+  }
+
+  .wrap{max-width:1080px; margin:0 auto; padding:0 28px;}
+
+  /* NAV */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(27,19,48,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(246,239,227,0.12);
+  }
+  header.nav .wrap{display:flex; align-items:center; justify-content:space-between; padding:16px 28px;}
+  .brandmark{font-family:var(--font-display); font-weight:700; font-size:1.15rem; letter-spacing:-0.01em;}
+  .brandmark span{color:var(--mustard);}
+  nav.links{display:flex; align-items:center; gap:24px; font-size:0.9rem;}
+  nav.links a{text-decoration:none; color:var(--paper); opacity:0.75; transition:opacity .2s;}
+  nav.links a:hover{opacity:1;}
+  nav.links a.nav-cta{
+    opacity:1; background:var(--mustard); color:var(--ink); font-weight:600;
+    padding:9px 18px; border-radius:999px; font-size:0.85rem;
+  }
+  nav.links a.nav-cta:hover{background:var(--pink); color:var(--paper);}
+  @media (max-width:640px){ nav.links a:not(.nav-cta){display:none;} }
+
+  /* BOTONES / CTA */
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--font-body); font-weight:600; font-size:0.98rem;
+    padding:15px 30px; border-radius:999px; text-decoration:none;
+    background:linear-gradient(120deg, var(--pink), var(--mustard));
+    color:var(--paper); border:none; cursor:pointer;
+    box-shadow:0 10px 30px -8px rgba(228,53,107,0.55);
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .btn:hover{transform:translateY(-3px); box-shadow:0 16px 34px -8px rgba(228,53,107,0.65);}
+  .btn.btn-ghost{
+    background:transparent; border:1.5px solid rgba(246,239,227,0.4); color:var(--paper);
+    box-shadow:none;
+  }
+  .btn.btn-ghost:hover{border-color:var(--mustard); color:var(--mustard); transform:translateY(-3px); box-shadow:none;}
+  .btn.btn-dark{
+    background:var(--ink); color:var(--paper); box-shadow:0 10px 26px -10px rgba(27,19,48,0.5);
+  }
+  .btn.btn-dark:hover{background:var(--pink); box-shadow:0 14px 30px -10px rgba(228,53,107,0.55);}
+
+  .cta-strip{
+    margin-top:56px; padding:36px; border-radius:20px;
+    background:linear-gradient(120deg, rgba(228,53,107,0.14), rgba(31,166,160,0.12));
+    border:1px solid rgba(246,239,227,0.14);
+    display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:20px;
+  }
+  .cta-strip p{margin:0; font-family:var(--font-display); font-weight:700; font-size:1.25rem; max-width:32ch;}
+  .cta-strip.on-light{background:linear-gradient(120deg, rgba(228,53,107,0.08), rgba(31,166,160,0.08)); border-color:rgba(27,19,48,0.12);}
+  .cta-strip.on-light p{color:var(--ink);}
+
+  /* reveal-on-scroll */
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.is-visible{opacity:1; transform:translateY(0);}
+
+  /* HERO */
+  .hero{
+    position:relative;
+    padding:96px 0 80px;
+    overflow:hidden;
+    background:
+      radial-gradient(ellipse 60% 50% at 85% 0%, rgba(228,53,107,0.25), transparent 60%),
+      radial-gradient(ellipse 50% 40% at 10% 10%, rgba(31,166,160,0.2), transparent 60%);
+  }
+  .hero .eyebrow{
+    font-family:var(--font-mono); font-size:0.8rem; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--mustard); margin:0 0 18px;
+  }
+  .hero h1{
+    font-family:var(--font-display);
+    font-weight:800;
+    font-size:clamp(2.4rem, 6vw, 4.4rem);
+    line-height:1.02;
+    letter-spacing:-0.02em;
+    margin:0 0 22px;
+    max-width:15ch;
+  }
+  .hero h1 em{font-style:normal; color:var(--pink);}
+  .hero p.lead{
+    font-size:1.15rem; max-width:54ch; color:var(--paper-dim); margin:0 0 32px;
+  }
+  .hero-meta{display:flex; flex-wrap:wrap; gap:14px 28px; font-family:var(--font-mono); font-size:0.85rem; color:var(--paper-dim); margin:0 0 36px;}
+  .hero-meta strong{color:var(--paper); font-weight:700;}
+  .hero-actions{display:flex; flex-wrap:wrap; gap:14px;}
+
+  /* stripe divider - textile motif */
+  .stripe{height:10px; display:flex;}
+  .stripe span{flex:1;}
+  .stripe span:nth-child(1){background:var(--pink);}
+  .stripe span:nth-child(2){background:var(--mustard);}
+  .stripe span:nth-child(3){background:var(--teal);}
+
+  section{padding:72px 0;}
+  h2.section-title{
+    font-family:var(--font-display); font-weight:700; font-size:clamp(1.6rem,3.2vw,2.4rem);
+    letter-spacing:-0.01em; margin:0 0 12px;
+  }
+  p.section-sub{color:var(--paper-dim); max-width:60ch; margin:0 0 44px; font-size:1.02rem;}
+
+  /* SOBRE NOSOTROS */
+  .about-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px; align-items:start;}
+  @media (max-width:800px){ .about-grid{grid-template-columns:1fr;} }
+  .about-grid p{color:var(--paper-dim); margin:0 0 16px;}
+  .stat-card{
+    background:var(--paper); color:var(--ink); border-radius:14px; padding:24px; margin-bottom:14px;
+    box-shadow:0 14px 30px -14px rgba(0,0,0,0.45);
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .stat-card:hover{transform:translateY(-4px); box-shadow:0 18px 36px -14px rgba(0,0,0,0.5);}
+  .stat-card .num{font-family:var(--font-mono); font-weight:700; font-size:1.5rem; color:var(--pink);}
+  .stat-card .label{font-size:0.9rem; color:var(--ink-soft); margin-top:4px;}
+
+  /* ENFOQUE */
+  .enfoque{background:var(--bg-soft);}
+  .enfoque-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:20px;}
+  @media (max-width:700px){ .enfoque-grid{grid-template-columns:1fr;} }
+  .enfoque-card{
+    border:1px solid rgba(246,239,227,0.14); border-radius:14px; padding:24px;
+    background:rgba(246,239,227,0.04);
+    box-shadow:0 14px 28px -18px rgba(0,0,0,0.6);
+    transition:transform .25s ease, border-color .25s ease;
+  }
+  .enfoque-card:hover{transform:translateY(-4px); border-color:rgba(240,169,59,0.5);}
+  .enfoque-card .tag{
+    font-family:var(--font-mono); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em;
+    color:var(--teal); margin-bottom:10px; display:block;
+  }
+  .enfoque-card h3{font-family:var(--font-display); font-size:1.15rem; margin:0 0 8px;}
+  .enfoque-card p{color:var(--paper-dim); font-size:0.95rem; margin:0;}
+
+  /* CASOS - ruta */
+  .ruta{position:relative; margin-top:20px;}
+  .ruta::before{
+    content:""; position:absolute; left:19px; top:8px; bottom:8px; width:2px;
+    background-image:linear-gradient(var(--paper-dim) 60%, transparent 0%);
+    background-size:2px 12px; background-repeat:repeat-y; opacity:0.35;
+  }
+  @media (max-width:640px){ .ruta::before{left:15px;} }
+
+  .caso{position:relative; padding-left:60px; margin-bottom:56px;}
+  @media (max-width:640px){ .caso{padding-left:48px;} }
+  .caso:last-child{margin-bottom:0;}
+  .caso .pin{
+    position:absolute; left:0; top:2px; width:40px; height:40px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-display); font-weight:800; font-size:0.95rem; color:var(--ink);
+    border:2px solid var(--bg);
+  }
+  @media (max-width:640px){ .caso .pin{width:32px; height:32px; font-size:0.8rem;} }
+  .caso:nth-child(1) .pin{background:var(--pink);}
+  .caso:nth-child(2) .pin{background:var(--mustard);}
+  .caso:nth-child(3) .pin{background:var(--teal);}
+  .caso:nth-child(4) .pin{background:var(--paper);}
+  .caso:nth-child(5) .pin{background:var(--pink);}
+  .caso:nth-child(6) .pin{background:var(--mustard);}
+
+  .caso-head{display:flex; flex-wrap:wrap; align-items:baseline; gap:10px 16px; margin-bottom:6px;}
+  .caso-head h3{font-family:var(--font-display); font-size:1.5rem; margin:0;}
+  .caso-zona{font-family:var(--font-mono); font-size:0.78rem; color:var(--paper-dim); text-transform:uppercase; letter-spacing:0.06em;}
+  .caso-desc{color:var(--paper-dim); max-width:65ch; margin:0 0 18px;}
+  .caso-facts{display:flex; flex-wrap:wrap; gap:10px; margin-bottom:20px;}
+  .fact{
+    font-family:var(--font-mono); font-size:0.82rem; background:rgba(246,239,227,0.08);
+    border:1px solid rgba(246,239,227,0.15); border-radius:8px; padding:6px 12px;
+  }
+  .fact b{color:var(--mustard);}
+
+  .gallery{display:grid; grid-template-columns:repeat(4,1fr); gap:10px;}
+  @media (max-width:700px){ .gallery{grid-template-columns:repeat(2,1fr);} }
+  .photo-slot{
+    aspect-ratio:4/5; border:2px dashed rgba(246,239,227,0.3); border-radius:10px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
+    color:var(--paper-dim); font-family:var(--font-mono); font-size:0.72rem; text-align:center; padding:8px;
+  }
+  .photo-slot .plus{font-size:1.4rem; color:var(--mustard);}
+  .photo-slot.photo{border:none; padding:0; overflow:hidden; box-shadow:0 10px 24px -12px rgba(0,0,0,0.6);}
+  .photo-slot.photo img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .4s ease;}
+  .photo-slot.photo:hover img{transform:scale(1.05);}
+
+  /* POR QUE */
+  .porque-list{display:grid; grid-template-columns:repeat(2,1fr); gap:20px;}
+  @media (max-width:700px){ .porque-list{grid-template-columns:1fr;} }
+  .porque-item{
+    display:flex; gap:14px; padding:22px; border-radius:14px;
+    background:rgba(246,239,227,0.04); border:1px solid rgba(246,239,227,0.12);
+    box-shadow:0 14px 28px -18px rgba(0,0,0,0.55);
+    transition:transform .25s ease, border-color .25s ease;
+  }
+  .porque-item:hover{transform:translateY(-4px); border-color:rgba(31,166,160,0.5);}
+  .porque-item .bullet{
+    flex:none; width:34px; height:34px; border-radius:50%; background:var(--teal); color:var(--ink);
+    display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-weight:800;
+  }
+  .porque-item h3{font-family:var(--font-display); font-size:1.05rem; margin:0 0 4px;}
+  .porque-item p{color:var(--paper-dim); font-size:0.92rem; margin:0;}
+
+  /* CONTACTO */
+  footer.contact{
+    background:var(--paper); color:var(--ink); padding:80px 0 48px; border-radius:32px 32px 0 0; margin-top:20px;
+  }
+  footer.contact h2{
+    font-family:var(--font-display); font-weight:800; font-size:clamp(1.8rem,4vw,2.8rem); margin:0 0 16px; max-width:16ch;
+  }
+  footer.contact p.lead{color:var(--ink-soft); max-width:50ch; margin:0 0 32px; font-size:1.05rem;}
+  .contact-grid{display:flex; flex-wrap:wrap; gap:14px; margin-bottom:40px;}
+  .contact-pill{
+    font-family:var(--font-mono); font-size:0.9rem; background:rgba(27,19,48,0.06); border:1px solid rgba(27,19,48,0.14);
+    border-radius:999px; padding:10px 18px;
+  }
+  .contact-pill mark.edit{background:var(--pink); color:var(--paper);}
+  .foot-bottom{display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:0.8rem; color:var(--ink-soft); border-top:1px solid rgba(27,19,48,0.12); padding-top:24px; margin-top:16px;}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <div class="brandmark">Stephanie Dueri<span>·</span>BTL</div>
+    <nav class="links">
+      <a href="#sobre">Sobre nosotros</a>
+      <a href="#enfoque">Cómo trabajamos</a>
+      <a href="#casos">Casos</a>
+      <a href="#porque">Por qué nosotros</a>
+      <a href="#contacto" class="nav-cta">Solicita una propuesta</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Equipo de activaciones BTL</p>
+    <h1>Creamos experiencias que hacen <em>crecer tu marca</em>.</h1>
+    <p class="lead">
+      Ejecutamos activaciones BTL en puntos de venta, farmacias, ferias y espacios de alto
+      tránsito, acercando tu marca al consumidor justo en el momento en que decide qué comprar —
+      con presencia de marca, impulso comercial y reportes que muestran resultados reales.
+    </p>
+    <div class="hero-meta">
+      <span><strong>Múltiples</strong> marcas activadas</span>
+      <span><strong>Amplia</strong> cobertura de zonas</span>
+      <span><strong>Presencia</strong> en distintas ciudades de Bolivia</span>
+      <span>Servicio de comprador incógnito incluido</span>
+      <span><strong><mark class="edit">[X meses/años]</mark></strong> de experiencia en campo</span>
+    </div>
+    <div class="hero-actions">
+      <a href="#contacto" class="btn">Conversemos sobre tu próxima activación</a>
+      <a href="#casos" class="btn btn-ghost">Ver casos de trabajo</a>
+    </div>
+  </div>
+</section>
+<div class="stripe"><span></span><span></span><span></span></div>
+
+<section id="sobre">
+  <div class="wrap about-grid">
+    <div class="reveal">
+      <h2 class="section-title">Sobre nosotros</h2>
+      <p>
+        Soy Stephanie Dueri Ibáñez, fundadora y coordinadora de Stephanie Dueri BTL. Empecé hace
+        <mark class="edit">[X meses]</mark> liderando activaciones en campo y, desde entonces, he formado un
+        equipo preparado para ejecutar campañas BTL de principio a fin.
+      </p>
+      <p>
+        Trabajamos con marcas de distintas industrias —protección solar, higiene infantil, salud
+        femenina, farmacia y golosinas— siempre cerca del consumidor: en punto de venta,
+        farmacias, ferias y calle. Además de activar la marca, ofrecemos <strong>comprador
+        incógnito</strong>: evaluamos la experiencia de compra y la atención en punto de venta
+        desde el otro lado del mostrador.
+      </p>
+      <p>
+        Nuestro trabajo no termina cuando se arma el stand. Cada jornada se cierra con un informe
+        de resultados, así que la marca que nos contrata sabe exactamente qué pasó ese día, con
+        total transparencia sobre cómo se desarrolló su campaña.
+      </p>
+    </div>
+    <div class="reveal">
+      <div class="stat-card">
+        <div class="num">Marcas</div>
+        <div class="label">de distintas industrias ya confiaron en nuestro equipo: Solaris, Pañales Babu, Actifem, Antigripal LCH, ChocoBom y Sucranova</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">Alcance masivo</div>
+        <div class="label">contacto directo con miles de consumidores durante nuestras campañas, en puntos estratégicos de alto tránsito</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">Cobertura amplia</div>
+        <div class="label">presencia en distintas zonas de la ciudad, con proyección a otras ciudades de Bolivia</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="enfoque" class="enfoque">
+  <div class="wrap">
+    <h2 class="section-title reveal">Cómo trabajamos</h2>
+    <p class="section-sub reveal">Cada formato que ejecutamos está pensado para generar un resultado concreto en el negocio de la marca:</p>
+    <div class="enfoque-grid">
+      <div class="enfoque-card reveal">
+        <span class="tag">Punto de venta</span>
+        <h3>Activación en tienda</h3>
+        <p>Acercamos tu producto al consumidor justo en el momento en que decide qué comprar, aumentando la visibilidad de la marca y empujando la decisión de compra en el punto exacto de venta.</p>
+      </div>
+      <div class="enfoque-card reveal">
+        <span class="tag">Farmacia</span>
+        <h3>Activación en farmacias</h3>
+        <p>Generamos confianza en el consumidor a través del contacto directo, la resolución de dudas y la entrega de incentivos, fortaleciendo la relación entre la marca y quien la compra.</p>
+      </div>
+      <div class="enfoque-card reveal">
+        <span class="tag">Calle y ferias</span>
+        <h3>Activación de calle</h3>
+        <p>Multiplicamos la visibilidad de tu marca y su recordación en la mente del consumidor, llevando la experiencia directamente a la calle y a los espacios donde se concentra el público.</p>
+      </div>
+      <div class="enfoque-card reveal">
+        <span class="tag">Venta directa</span>
+        <h3>Impulso de ventas</h3>
+        <p>Acompañamos al consumidor durante su decisión de compra, incrementando la rotación del producto y traduciendo la presencia de marca en resultados comerciales concretos.</p>
+      </div>
+      <div class="enfoque-card reveal">
+        <span class="tag">Comprador incógnito</span>
+        <h3>Mystery shopper</h3>
+        <p>Evaluamos la experiencia real de compra para que la marca conozca cómo se siente atendido su cliente, y pueda mejorar su servicio con información objetiva y accionable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="casos">
+  <div class="wrap">
+    <h2 class="section-title reveal">Casos de trabajo</h2>
+    <p class="section-sub reveal">Un recorrido por las marcas y formatos donde nuestro equipo ya estuvo en campo.</p>
+
+    <div class="ruta">
+
+      <article class="caso reveal">
+        <div class="pin">01</div>
+        <div class="caso-head">
+          <h3>Solaris</h3>
+          <span class="caso-zona">Calle y ferias · zona sur, zona norte, zona central</span>
+        </div>
+        <p class="caso-desc">
+          Recorridos a pie con estructura publicitaria, globos de marca y entrega de muestras,
+          generando contacto directo con el público en ferias y calles de distintas zonas de la
+          ciudad.
+        </p>
+        <div class="caso-facts">
+          <span class="fact">Formato: <b>Calle + ferias</b></span>
+          <span class="fact">Cobertura: <b>Zona sur · Zona norte · Zona central</b></span>
+        </div>
+        <div class="gallery">
+          <div class="photo-slot photo"><img src="img/solaris-1.jpeg" alt="Activación de calle Solaris con estructura publicitaria y globos"></div>
+          <div class="photo-slot photo"><img src="img/solaris-2.jpeg" alt="Entrega de muestras de Solaris a transeúntes"></div>
+          <div class="photo-slot photo"><img src="img/solaris-3.jpeg" alt="Promotora de Solaris conversando con una señora en la calle"></div>
+          <div class="photo-slot photo"><img src="img/solaris-4.jpeg" alt="Activación de Solaris en parada de calle con globos"></div>
+        </div>
+      </article>
+
+      <article class="caso reveal">
+        <div class="pin">02</div>
+        <div class="caso-head">
+          <h3>Pañales Babu</h3>
+          <span class="caso-zona">Impulso de ventas</span>
+        </div>
+        <p class="caso-desc">
+          Activación enfocada en impulsar la venta directa, brindando asesoramiento al consumidor
+          y acompañándolo durante su decisión de compra para incrementar la rotación del
+          producto en el punto de venta.
+        </p>
+        <div class="caso-facts">
+          <span class="fact">Formato: <b>Venta directa</b></span>
+        </div>
+        <div class="gallery">
+          <div class="photo-slot"><span class="plus">+</span>Foto</div>
+          <div class="photo-slot"><span class="plus">+</span>Foto</div>
+          <div class="photo-slot"><span class="plus">+</span>Foto</div>
+          <div class="photo-slot"><span class="plus">+</span>Video</div>
+        </div>
+      </article>
+
+      <article class="caso reveal">
+        <div class="pin">03</div>
+        <div class="caso-head">
+          <h3>ChocoBom</h3>
+          <span class="caso-zona">Reposición de producto · zona central y zona norte</span>
+        </div>
+        <p class="caso-desc">
+          Servicio de reposición de producto en punto de venta: nos encargamos del abastecimiento
+          y la exhibición en distintos locales de la zona central y la zona norte, garantizando
+          que la marca esté siempre disponible y bien presentada en góndola.
+        </p>
+        <div class="caso-facts">
+          <span class="fact">Formato: <b>Reposición y merchandising</b></span>
+          <span class="fact">Cobertura: <b>Zona central · Zona norte</b></span>
+        </div>
+        <div class="gallery">
+          <div class="photo-slot"><span class="plus">+</span>Foto</div>
+          <div class="photo-slot"><span class="plus">+</span>Foto</div>
+          <div class="photo-slot"><span class="plus">+</span>Foto</div>
+          <div class="photo-slot"><span class="plus">+</span>Video</div>
+        </div>
+      </article>
+
+      <article class="caso reveal">
+        <div class="pin">04</div>
+        <div class="caso-head">
+          <h3>Actifem</h3>
+          <span class="caso-zona">Farmacias y calle</span>
+        </div>
+        <p class="caso-desc">
+          Activaciones en farmacias y también en calle, acercando la marca al consumidor a través
+          de entrega de muestras e incentivos, resolviendo dudas sobre el producto y generando un
+          contacto cercano y de confianza en cada punto de contacto.
+        </p>
+        <div class="caso-facts">
+          <span class="fact">Formato: <b>Farmacia + Calle</b></span>
+        </div>
+        <div class="gallery">
+          <div class="photo-slot"><span class="plus">+</span>Foto</div>
+          <div class="photo-slot"><span class="plus">+</span>Foto</div>
+          <div class="photo-slot"><span class="plus">+</span>Foto</div>
+          <div class="photo-slot"><span class="plus">+</span>Video</div>
+        </div>
+      </article>
+
+      <article class="caso reveal">
+        <div class="pin">05</div>
+        <div class="caso-head">
+          <h3>Antigripal LCH</h3>
+          <span class="caso-zona">Farmacias, calles y ferias</span>
+        </div>
+        <p class="caso-desc">
+          Presencia de marca en farmacias, calles y ferias, entregando muestras y regalos
+          promocionales, e interactuando directamente con el público para dar a conocer el
+          producto y difundir sus beneficios.
+        </p>
+        <div class="caso-facts">
+          <span class="fact">Formato: <b>Farmacia + Calle + Ferias</b></span>
+        </div>
+        <div class="gallery">
+          <div class="photo-slot"><span class="plus">+</span>Foto</div>
+          <div class="photo-slot"><span class="plus">+</span>Foto</div>
+          <div class="photo-slot"><span class="plus">+</span>Foto</div>
+          <div class="photo-slot"><span class="plus">+</span>Video</div>
+        </div>
+      </article>
+
+      <article class="caso reveal">
+        <div class="pin">06</div>
+        <div class="caso-head">
+          <h3>Sucranova</h3>
+          <span class="caso-zona">Punto de venta</span>
+        </div>
+        <p class="caso-desc">
+          Activación y degustación en punto de venta, generando confianza en el producto y
+          permitiendo que el consumidor conociera sus beneficios de primera mano antes de tomar
+          la decisión de compra.
+        </p>
+        <div class="caso-facts">
+          <span class="fact">Formato: <b>Punto de venta</b></span>
+        </div>
+        <div class="gallery">
+          <div class="photo-slot"><span class="plus">+</span>Foto</div>
+          <div class="photo-slot"><span class="plus">+</span>Foto</div>
+          <div class="photo-slot"><span class="plus">+</span>Foto</div>
+          <div class="photo-slot"><span class="plus">+</span>Video</div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="cta-strip reveal">
+      <p>Conversemos sobre tu próxima activación.</p>
+      <a href="#contacto" class="btn btn-dark">Solicita una propuesta</a>
+    </div>
+  </div>
+</section>
+
+<section id="porque">
+  <div class="wrap">
+    <h2 class="section-title reveal">¿Por qué trabajar con nosotros?</h2>
+    <p class="section-sub reveal">Esto es lo que ofrecemos a las marcas que confían en nuestro equipo, campaña tras campaña.</p>
+    <div class="porque-list">
+      <div class="porque-item reveal">
+        <div class="bullet">1</div>
+        <div>
+          <h3>Nos adaptamos a cada marca</h3>
+          <p>Antes de iniciar una activación analizamos el mercado, el producto, el público objetivo, el comportamiento del consumidor y el tipo de comunicación que necesita la marca, para diseñar una activación que realmente conecte con las personas adecuadas.</p>
+        </div>
+      </div>
+      <div class="porque-item reveal">
+        <div class="bullet">2</div>
+        <div>
+          <h3>El formato más completo del mercado</h3>
+          <p>Cubrimos punto de venta, farmacia, calle, ferias, venta directa <b>y comprador incógnito</b> con un mismo equipo: la marca no necesita coordinar varios proveedores para ejecutar una campaña completa.</p>
+        </div>
+      </div>
+      <div class="porque-item reveal">
+        <div class="bullet">3</div>
+        <div>
+          <h3>Activaciones a la medida de cada marca</h3>
+          <p>Trabajamos con marcas reconocidas de diferentes industrias y diseñamos cada activación según el producto, el público objetivo y los resultados que la marca busca conseguir.</p>
+        </div>
+      </div>
+      <div class="porque-item reveal">
+        <div class="bullet">4</div>
+        <div>
+          <h3>Un equipo que representa tu marca</h3>
+          <p>Presentación cuidada, trato cercano y profesionalismo en cada punto de contacto. Nos involucramos con cada campaña como si fuera nuestra propia marca, buscando siempre superar las expectativas del cliente.</p>
+        </div>
+      </div>
+      <div class="porque-item reveal">
+        <div class="bullet">5</div>
+        <div>
+          <h3>Reportes claros de principio a fin</h3>
+          <p>Cada jornada cierra con un informe que muestra el desarrollo real de la campaña, para que la marca siempre sepa qué pasó en el punto de venta, no solo vea fotos.</p>
+        </div>
+      </div>
+      <div class="porque-item reveal">
+        <div class="bullet">6</div>
+        <div>
+          <h3>Mirada de comprador incógnito</h3>
+          <p>Además de activar, sabemos evaluar: atención, cumplimiento de protocolo y experiencia de compra reales, vistas desde adentro del punto de venta —una ventaja que pocos equipos BTL ofrecen.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="contact" id="contacto">
+  <div class="wrap">
+    <h2>Trabajemos tu próxima activación.</h2>
+    <p class="lead">Cuéntanos qué necesita la marca y armamos el formato de activación desde cero.</p>
+    <div class="contact-grid">
+      <span class="contact-pill">📞 <mark class="edit">[teléfono]</mark></span>
+      <span class="contact-pill">✉️ <mark class="edit">[email]</mark></span>
+      <span class="contact-pill">📷 <mark class="edit">[Instagram]</mark></span>
+      <span class="contact-pill">📍 La Paz, Bolivia</span>
+    </div>
+    <div class="hero-actions" style="margin-bottom:24px;">
+      <a href="#contacto" class="btn">Solicita una propuesta personalizada</a>
+    </div>
+    <div class="foot-bottom">
+      <span>Stephanie Dueri BTL · Equipo de activaciones</span>
+      <span><mark class="edit">[año]</mark></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var items = document.querySelectorAll('.reveal');
+    if(prefersReduced || !('IntersectionObserver' in window)){
+      items.forEach(function(el){ el.classList.add('is-visible'); });
+      return;
+    }
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    items.forEach(function(el){ observer.observe(el); });
+  })();
+</script>
+
+</body>
+</html>
