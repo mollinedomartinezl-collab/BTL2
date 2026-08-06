@@ -1,24 +1,22 @@
 <!DOCTYPE html>
-<!--
-  PLANTILLA EDITABLE — instrucciones para quien complete el portafolio:
-  1. Busca el texto resaltado en amarillo (así: [EJEMPLO]) — ahí van los datos exactos
-     (tiempo de experiencia, teléfono, email, Instagram, año).
-  2. Las cajas con borde punteado y la etiqueta "+ FOTO" son espacios para las fotos.
-     Reemplázalas por <img src="ruta-de-la-foto.jpg" alt="..."> cuando tengas las imágenes.
-  3. Cuando todo esté listo, puedes borrar este comentario.
--->
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portafolio BTL — Stephanie Dueri BTL</title>
+<title>KONECTA ANDINA — Activaciones que hacen crecer tu marca</title>
+<meta name="description" content="KONECTA ANDINA: agencia BTL especializada en punto de venta, farmacias, calle, ferias y comprador incógnito. Diagnóstico, ejecución en campo y reportes claros para marcas que buscan resultados reales.">
+<meta property="og:title" content="KONECTA ANDINA — Conectamos personas, movemos resultados, inspiramos experiencias">
+<meta property="og:description" content="Diseñamos y ejecutamos activaciones BTL a la medida de cada marca, con reportes claros de principio a fin.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#1B1330">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#1B1330;
     --bg-soft:#241a3f;
+    --bg-softer:#2c2049;
     --paper:#F6EFE3;
     --paper-dim:#ece2d0;
     --ink:#1B1330;
@@ -28,223 +26,396 @@
     --teal:#1FA6A0;
     --edit-bg:#F0A93B;
     --edit-ink:#1B1330;
+    --glass-bg:rgba(27,19,48,0.5);
+    --glass-bg-strong:rgba(20,14,36,0.86);
+    --glass-border:rgba(246,239,227,0.14);
+    --line:rgba(246,239,227,0.12);
+    --r-lg:28px;
+    --r-md:18px;
+    --r-sm:12px;
+    --ease:cubic-bezier(.22,1,.36,1);
     --font-display:'Bricolage Grotesque', sans-serif;
     --font-body:'Inter', sans-serif;
     --font-mono:'JetBrains Mono', monospace;
   }
   *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;} }
+  html{scroll-behavior:smooth; scroll-padding-top:90px;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
+  }
   body{
     margin:0;
     background:var(--bg);
     color:var(--paper);
     font-family:var(--font-body);
-    line-height:1.5;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
   }
   a{color:inherit;}
+  img{max-width:100%; display:block;}
   :focus-visible{outline:3px solid var(--mustard); outline-offset:3px;}
+  .skip-link{
+    position:absolute; left:12px; top:-60px; z-index:200;
+    background:var(--mustard); color:var(--ink); padding:12px 18px; border-radius:8px;
+    font-weight:700; text-decoration:none; transition:top .2s ease;
+  }
+  .skip-link:focus{top:12px;}
 
   mark.edit{
-    background:var(--edit-bg);
-    color:var(--edit-ink);
-    font-family:var(--font-mono);
-    font-weight:700;
-    font-size:0.85em;
-    padding:0.1em 0.4em;
-    border-radius:3px;
-    text-decoration:none;
+    background:var(--edit-bg); color:var(--edit-ink); font-family:var(--font-mono);
+    font-weight:700; font-size:0.85em; padding:0.1em 0.45em; border-radius:4px; text-decoration:none;
   }
 
-  .wrap{max-width:1080px; margin:0 auto; padding:0 28px;}
+  .wrap{max-width:1160px; margin:0 auto; padding:0 28px;}
+  @media (max-width:640px){ .wrap{padding:0 20px;} }
 
-  /* NAV */
+  /* ===== scroll progress ===== */
+  .scroll-progress{
+    position:fixed; top:0; left:0; height:3px; width:0%;
+    background:linear-gradient(90deg, var(--pink), var(--mustard), var(--teal));
+    z-index:120; transition:width .1s linear;
+  }
+
+  /* ===== floating hamburger ===== */
+  .menu-trigger{
+    position:fixed; left:24px; top:28px; z-index:110;
+    width:52px; height:52px; border-radius:50%; border:1px solid var(--glass-border);
+    background:var(--glass-bg-strong); backdrop-filter:blur(10px);
+    display:flex; align-items:center; justify-content:center; cursor:pointer;
+    box-shadow:0 10px 26px -12px rgba(0,0,0,0.6);
+    transition:transform .3s var(--ease), border-color .3s ease, background .3s ease;
+  }
+  .menu-trigger:hover{transform:translateY(-2px); border-color:rgba(240,169,59,0.55);}
+  .menu-trigger .bars{width:20px; height:14px; position:relative;}
+  .menu-trigger .bars span{
+    position:absolute; left:0; width:100%; height:2px; background:var(--paper); border-radius:2px;
+    transition:transform .3s var(--ease), opacity .25s ease, top .3s var(--ease);
+  }
+  .menu-trigger .bars span:nth-child(1){top:0;}
+  .menu-trigger .bars span:nth-child(2){top:6px;}
+  .menu-trigger .bars span:nth-child(3){top:12px;}
+  body.drawer-open .menu-trigger .bars span:nth-child(1){top:6px; transform:rotate(45deg);}
+  body.drawer-open .menu-trigger .bars span:nth-child(2){opacity:0;}
+  body.drawer-open .menu-trigger .bars span:nth-child(3){top:6px; transform:rotate(-45deg);}
+  body.drawer-open .menu-trigger{left:294px;}
+  @media (max-width:640px){
+    .menu-trigger{left:16px; top:16px; width:46px; height:46px;}
+    body.drawer-open .menu-trigger{left:16px; opacity:0; pointer-events:none;}
+  }
+
+  /* ===== side drawer ===== */
+  .drawer-backdrop{
+    position:fixed; inset:0; background:rgba(10,7,18,0.55); backdrop-filter:blur(2px);
+    opacity:0; pointer-events:none; transition:opacity .35s ease; z-index:100;
+  }
+  body.drawer-open .drawer-backdrop{opacity:1; pointer-events:auto;}
+  .drawer{
+    position:fixed; top:0; left:0; height:100%; width:272px; z-index:105;
+    background:linear-gradient(180deg, #1e1536, #150f26);
+    border-right:1px solid var(--glass-border);
+    transform:translateX(-100%); transition:transform .4s var(--ease);
+    display:flex; flex-direction:column; padding:100px 0 32px;
+  }
+  body.drawer-open .drawer{transform:translateX(0);}
+  .drawer .drawer-brand{
+    font-family:var(--font-display); font-weight:700; font-size:1.05rem; padding:0 30px; margin-bottom:36px; opacity:0.85;
+  }
+  .drawer nav{display:flex; flex-direction:column; gap:2px; padding:0 14px;}
+  .drawer nav a{
+    text-decoration:none; color:var(--paper-dim); font-family:var(--font-display); font-weight:600;
+    font-size:1.05rem; padding:13px 16px; border-radius:10px; position:relative;
+    transition:color .2s ease, background .2s ease, padding-left .2s ease;
+  }
+  .drawer nav a:hover, .drawer nav a.active{color:var(--paper); background:rgba(246,239,227,0.06); padding-left:22px;}
+  .drawer nav a.active{color:var(--mustard);}
+  .drawer-cta{padding:20px 24px 0; margin-top:auto;}
+
+  /* ===== active section dots (desktop) ===== */
+  .dot-nav{
+    position:fixed; right:26px; top:50%; transform:translateY(-50%); z-index:60;
+    display:flex; flex-direction:column; gap:14px;
+  }
+  .dot-nav a{
+    width:9px; height:9px; border-radius:50%; background:rgba(246,239,227,0.25);
+    border:1px solid transparent; transition:background .25s ease, transform .25s ease;
+    position:relative;
+  }
+  .dot-nav a::before{
+    content:attr(data-label); position:absolute; right:20px; top:50%; transform:translateY(-50%);
+    font-family:var(--font-mono); font-size:0.72rem; white-space:nowrap; color:var(--paper-dim);
+    background:var(--glass-bg-strong); padding:5px 10px; border-radius:6px; border:1px solid var(--glass-border);
+    opacity:0; pointer-events:none; transition:opacity .2s ease;
+  }
+  .dot-nav a:hover::before{opacity:1;}
+  .dot-nav a.active{background:var(--mustard); transform:scale(1.35);}
+  @media (max-width:900px){ .dot-nav{display:none;} }
+
+  /* ===== back to top ===== */
+  .to-top{
+    position:fixed; right:24px; bottom:24px; z-index:60;
+    width:48px; height:48px; border-radius:50%; border:1px solid var(--glass-border);
+    background:var(--glass-bg-strong); backdrop-filter:blur(10px); color:var(--paper);
+    display:flex; align-items:center; justify-content:center; cursor:pointer;
+    opacity:0; pointer-events:none; transform:translateY(10px);
+    transition:opacity .3s ease, transform .3s ease, border-color .3s ease;
+  }
+  .to-top.show{opacity:1; pointer-events:auto; transform:translateY(0);}
+  .to-top:hover{border-color:rgba(240,169,59,0.55);}
+
+  /* ===== top bar ===== */
   header.nav{
-    position:sticky; top:0; z-index:50;
-    background:rgba(27,19,48,0.92);
-    backdrop-filter:blur(6px);
-    border-bottom:1px solid rgba(246,239,227,0.12);
+    position:sticky; top:0; z-index:90;
+    padding:18px 0; transition:background .35s ease, padding .35s ease, border-color .35s ease, backdrop-filter .35s ease;
+    border-bottom:1px solid transparent;
   }
-  header.nav .wrap{display:flex; align-items:center; justify-content:space-between; padding:16px 28px;}
-  .brandmark{font-family:var(--font-display); font-weight:700; font-size:1.15rem; letter-spacing:-0.01em;}
+  header.nav .wrap{display:flex; align-items:center; justify-content:space-between; padding-left:84px;}
+  @media (max-width:640px){ header.nav .wrap{padding-left:64px;} }
+  header.nav.scrolled{
+    background:var(--glass-bg); backdrop-filter:blur(14px) saturate(140%); -webkit-backdrop-filter:blur(14px) saturate(140%);
+    border-bottom:1px solid var(--glass-border); padding:12px 0;
+  }
+  .brandmark{font-family:var(--font-display); font-weight:700; font-size:1.15rem; letter-spacing:-0.01em; text-decoration:none;}
   .brandmark span{color:var(--mustard);}
-  nav.links{display:flex; align-items:center; gap:24px; font-size:0.9rem;}
-  nav.links a{text-decoration:none; color:var(--paper); opacity:0.75; transition:opacity .2s;}
-  nav.links a:hover{opacity:1;}
-  nav.links a.nav-cta{
-    opacity:1; background:var(--mustard); color:var(--ink); font-weight:600;
-    padding:9px 18px; border-radius:999px; font-size:0.85rem;
+  .nav-cta{
+    text-decoration:none; opacity:1; background:var(--mustard); color:var(--ink); font-weight:600;
+    padding:11px 22px; border-radius:999px; font-size:0.85rem; transition:background .25s ease, transform .25s ease;
+    display:inline-block;
   }
-  nav.links a.nav-cta:hover{background:var(--pink); color:var(--paper);}
-  @media (max-width:640px){ nav.links a:not(.nav-cta){display:none;} }
+  .nav-cta:hover{background:var(--pink); color:var(--paper); transform:translateY(-2px);}
 
-  /* BOTONES / CTA */
+  /* ===== buttons ===== */
   .btn{
     display:inline-flex; align-items:center; gap:8px;
     font-family:var(--font-body); font-weight:600; font-size:0.98rem;
-    padding:15px 30px; border-radius:999px; text-decoration:none;
+    padding:16px 32px; border-radius:999px; text-decoration:none;
     background:linear-gradient(120deg, var(--pink), var(--mustard));
     color:var(--paper); border:none; cursor:pointer;
     box-shadow:0 10px 30px -8px rgba(228,53,107,0.55);
-    transition:transform .25s ease, box-shadow .25s ease;
+    transition:transform .3s var(--ease), box-shadow .3s var(--ease);
   }
   .btn:hover{transform:translateY(-3px); box-shadow:0 16px 34px -8px rgba(228,53,107,0.65);}
-  .btn.btn-ghost{
-    background:transparent; border:1.5px solid rgba(246,239,227,0.4); color:var(--paper);
-    box-shadow:none;
-  }
+  .btn.btn-ghost{background:transparent; border:1.5px solid rgba(246,239,227,0.35); color:var(--paper); box-shadow:none;}
   .btn.btn-ghost:hover{border-color:var(--mustard); color:var(--mustard); transform:translateY(-3px); box-shadow:none;}
-  .btn.btn-dark{
-    background:var(--ink); color:var(--paper); box-shadow:0 10px 26px -10px rgba(27,19,48,0.5);
-  }
+  .btn.btn-dark{background:var(--ink); color:var(--paper); box-shadow:0 10px 26px -10px rgba(27,19,48,0.5);}
   .btn.btn-dark:hover{background:var(--pink); box-shadow:0 14px 30px -10px rgba(228,53,107,0.55);}
 
   .cta-strip{
-    margin-top:56px; padding:36px; border-radius:20px;
+    margin-top:64px; padding:40px; border-radius:var(--r-lg);
     background:linear-gradient(120deg, rgba(228,53,107,0.14), rgba(31,166,160,0.12));
-    border:1px solid rgba(246,239,227,0.14);
+    border:1px solid var(--glass-border);
     display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:20px;
   }
-  .cta-strip p{margin:0; font-family:var(--font-display); font-weight:700; font-size:1.25rem; max-width:32ch;}
-  .cta-strip.on-light{background:linear-gradient(120deg, rgba(228,53,107,0.08), rgba(31,166,160,0.08)); border-color:rgba(27,19,48,0.12);}
-  .cta-strip.on-light p{color:var(--ink);}
+  .cta-strip p{margin:0; font-family:var(--font-display); font-weight:700; font-size:1.3rem; max-width:32ch;}
 
-  /* reveal-on-scroll */
-  .reveal{opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease;}
-  .reveal.is-visible{opacity:1; transform:translateY(0);}
+  /* ===== reveal-on-scroll ===== */
+  [data-animate]{opacity:0; transition:opacity .8s var(--ease), transform .8s var(--ease); transition-delay:var(--d,0ms);}
+  [data-animate="fade"]{transform:translateY(22px);}
+  [data-animate="slide-left"]{transform:translateX(-34px);}
+  [data-animate="slide-right"]{transform:translateX(34px);}
+  [data-animate="zoom"]{transform:scale(.92);}
+  [data-animate].is-visible{opacity:1; transform:none;}
 
-  /* HERO */
+  /* ===== HERO ===== */
   .hero{
-    position:relative;
-    padding:96px 0 80px;
-    overflow:hidden;
+    position:relative; padding:150px 0 110px; overflow:hidden;
     background:
-      radial-gradient(ellipse 60% 50% at 85% 0%, rgba(228,53,107,0.25), transparent 60%),
-      radial-gradient(ellipse 50% 40% at 10% 10%, rgba(31,166,160,0.2), transparent 60%);
+      radial-gradient(ellipse 62% 55% at 88% -6%, rgba(228,53,107,0.30), transparent 60%),
+      radial-gradient(ellipse 55% 45% at 6% 8%, rgba(31,166,160,0.22), transparent 60%),
+      radial-gradient(ellipse 40% 40% at 50% 100%, rgba(240,169,59,0.10), transparent 65%);
   }
+  .hero-thread{position:absolute; inset:0; z-index:0; opacity:0.5; pointer-events:none;}
+  .hero .wrap{position:relative; z-index:1;}
   .hero .eyebrow{
-    font-family:var(--font-mono); font-size:0.8rem; letter-spacing:0.12em; text-transform:uppercase;
-    color:var(--mustard); margin:0 0 18px;
+    font-family:var(--font-mono); font-size:0.8rem; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--mustard); margin:0 0 22px; display:flex; align-items:center; gap:10px;
   }
+  .hero .eyebrow::before{content:""; width:26px; height:1px; background:var(--mustard); display:inline-block;}
   .hero h1{
-    font-family:var(--font-display);
-    font-weight:800;
-    font-size:clamp(2.4rem, 6vw, 4.4rem);
-    line-height:1.02;
-    letter-spacing:-0.02em;
-    margin:0 0 22px;
-    max-width:15ch;
+    font-family:var(--font-display); font-weight:800;
+    font-size:clamp(2.8rem, 7.2vw, 5.6rem); line-height:0.98; letter-spacing:-0.03em;
+    margin:0 0 26px; max-width:17ch;
   }
-  .hero h1 em{font-style:normal; color:var(--pink);}
-  .hero p.lead{
-    font-size:1.15rem; max-width:54ch; color:var(--paper-dim); margin:0 0 32px;
-  }
-  .hero-meta{display:flex; flex-wrap:wrap; gap:14px 28px; font-family:var(--font-mono); font-size:0.85rem; color:var(--paper-dim); margin:0 0 36px;}
+  .hero h1 em{font-style:normal; color:var(--pink); background:linear-gradient(120deg,var(--pink),var(--mustard)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;}
+  .hero p.lead{font-size:1.2rem; max-width:56ch; color:var(--paper-dim); margin:0 0 38px;}
+  .hero-meta{display:flex; flex-wrap:wrap; gap:16px 30px; font-family:var(--font-mono); font-size:0.85rem; color:var(--paper-dim); margin:0 0 40px;}
   .hero-meta strong{color:var(--paper); font-weight:700;}
-  .hero-actions{display:flex; flex-wrap:wrap; gap:14px;}
+  .hero-actions{display:flex; flex-wrap:wrap; gap:16px;}
+  .scroll-cue{
+    position:absolute; left:50%; bottom:26px; transform:translateX(-50%); z-index:1;
+    display:flex; flex-direction:column; align-items:center; gap:8px; opacity:0.55;
+    font-family:var(--font-mono); font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase;
+  }
+  .scroll-cue .line{width:1px; height:34px; background:linear-gradient(var(--paper), transparent); animation:cue 1.8s ease-in-out infinite;}
+  @keyframes cue{0%{transform:scaleY(0); transform-origin:top;} 50%{transform:scaleY(1); transform-origin:top;} 51%{transform-origin:bottom;} 100%{transform:scaleY(0); transform-origin:bottom;}}
+  @media (max-width:640px){ .scroll-cue{display:none;} }
 
-  /* stripe divider - textile motif */
-  .stripe{height:10px; display:flex;}
+  .stripe{height:6px; display:flex;}
   .stripe span{flex:1;}
   .stripe span:nth-child(1){background:var(--pink);}
   .stripe span:nth-child(2){background:var(--mustard);}
   .stripe span:nth-child(3){background:var(--teal);}
 
-  section{padding:72px 0;}
+  section{padding:120px 0;}
+  @media (max-width:700px){ section{padding:84px 0;} }
+  .section-eyebrow{
+    font-family:var(--font-mono); font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--teal); margin:0 0 14px;
+  }
   h2.section-title{
-    font-family:var(--font-display); font-weight:700; font-size:clamp(1.6rem,3.2vw,2.4rem);
-    letter-spacing:-0.01em; margin:0 0 12px;
+    font-family:var(--font-display); font-weight:700; font-size:clamp(1.8rem,3.6vw,2.7rem);
+    letter-spacing:-0.02em; margin:0 0 14px; max-width:20ch;
   }
-  p.section-sub{color:var(--paper-dim); max-width:60ch; margin:0 0 44px; font-size:1.02rem;}
+  p.section-sub{color:var(--paper-dim); max-width:62ch; margin:0 0 56px; font-size:1.05rem;}
 
-  /* SOBRE NOSOTROS */
-  .about-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px; align-items:start;}
+  /* ===== SOBRE NOSOTROS ===== */
+  #sobre{background:var(--bg-soft); border-radius:var(--r-lg); margin:0 20px;}
+  @media (max-width:640px){ #sobre{margin:0 8px; border-radius:20px;} }
+  .about-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:start;}
   @media (max-width:800px){ .about-grid{grid-template-columns:1fr;} }
-  .about-grid p{color:var(--paper-dim); margin:0 0 16px;}
+  .about-grid p{color:var(--paper-dim); margin:0 0 18px;}
   .stat-card{
-    background:var(--paper); color:var(--ink); border-radius:14px; padding:24px; margin-bottom:14px;
+    background:var(--paper); color:var(--ink); border-radius:var(--r-md); padding:26px; margin-bottom:16px;
     box-shadow:0 14px 30px -14px rgba(0,0,0,0.45);
-    transition:transform .25s ease, box-shadow .25s ease;
+    transition:transform .3s var(--ease), box-shadow .3s var(--ease);
   }
-  .stat-card:hover{transform:translateY(-4px); box-shadow:0 18px 36px -14px rgba(0,0,0,0.5);}
-  .stat-card .num{font-family:var(--font-mono); font-weight:700; font-size:1.5rem; color:var(--pink);}
-  .stat-card .label{font-size:0.9rem; color:var(--ink-soft); margin-top:4px;}
+  .stat-card:hover{transform:translateY(-5px); box-shadow:0 20px 40px -16px rgba(0,0,0,0.5);}
+  .stat-card .num{font-family:var(--font-mono); font-weight:700; font-size:1.4rem; color:var(--pink);}
+  .stat-card .label{font-size:0.92rem; color:var(--ink-soft); margin-top:6px;}
 
-  /* ENFOQUE */
-  .enfoque{background:var(--bg-soft);}
-  .enfoque-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:20px;}
+  /* ===== METODOLOGIA (timeline) ===== */
+  .timeline{position:relative; margin-top:20px;}
+  .timeline::before{
+    content:""; position:absolute; left:23px; top:6px; bottom:6px; width:2px;
+    background:linear-gradient(var(--pink), var(--mustard), var(--teal));
+    opacity:0.55; border-radius:2px;
+  }
+  @media (max-width:640px){ .timeline::before{left:19px;} }
+  .tl-step{position:relative; padding-left:74px; margin-bottom:44px;}
+  @media (max-width:640px){ .tl-step{padding-left:58px;} }
+  .tl-step:last-child{margin-bottom:0;}
+  .tl-step .pin{
+    position:absolute; left:0; top:0; width:48px; height:48px; border-radius:50%;
+    background:var(--bg-soft); border:2px solid var(--mustard); color:var(--paper);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-mono); font-weight:700; font-size:0.95rem;
+    transition:transform .3s var(--ease);
+  }
+  @media (max-width:640px){ .tl-step .pin{width:38px; height:38px; font-size:0.8rem;} }
+  .tl-step:nth-child(3n+1) .pin{border-color:var(--pink); color:var(--pink);}
+  .tl-step:nth-child(3n+2) .pin{border-color:var(--mustard); color:var(--mustard);}
+  .tl-step:nth-child(3n+3) .pin{border-color:var(--teal); color:var(--teal);}
+  .tl-content{
+    border:1px solid var(--glass-border); border-radius:var(--r-md); padding:22px 26px;
+    background:rgba(246,239,227,0.03); transition:transform .3s var(--ease), border-color .3s ease;
+  }
+  .tl-content:hover{transform:translateX(6px); border-color:rgba(240,169,59,0.4);}
+  .tl-step:hover .pin{transform:scale(1.08);}
+  .tl-step h3{font-family:var(--font-display); font-size:1.25rem; margin:0 0 8px;}
+  .tl-step p{color:var(--paper-dim); max-width:60ch; margin:0;}
+
+  /* ===== SERVICIOS ===== */
+  .servicios{background:var(--bg-soft); border-radius:var(--r-lg); margin:0 20px;}
+  @media (max-width:640px){ .servicios{margin:0 8px; border-radius:20px;} }
+  .enfoque-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:22px;}
   @media (max-width:700px){ .enfoque-grid{grid-template-columns:1fr;} }
   .enfoque-card{
-    border:1px solid rgba(246,239,227,0.14); border-radius:14px; padding:24px;
+    border:1px solid var(--glass-border); border-radius:var(--r-md); padding:28px;
     background:rgba(246,239,227,0.04);
     box-shadow:0 14px 28px -18px rgba(0,0,0,0.6);
-    transition:transform .25s ease, border-color .25s ease;
+    transition:transform .3s var(--ease), border-color .3s ease, background .3s ease;
   }
-  .enfoque-card:hover{transform:translateY(-4px); border-color:rgba(240,169,59,0.5);}
+  .enfoque-card:hover{transform:translateY(-6px); border-color:rgba(240,169,59,0.5); background:rgba(246,239,227,0.06);}
+  .icon-badge{
+    width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center;
+    background:rgba(31,166,160,0.14); color:var(--teal); margin-bottom:16px;
+  }
+  .icon-badge svg{width:22px; height:22px;}
   .enfoque-card .tag{
     font-family:var(--font-mono); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em;
     color:var(--teal); margin-bottom:10px; display:block;
   }
-  .enfoque-card h3{font-family:var(--font-display); font-size:1.15rem; margin:0 0 8px;}
-  .enfoque-card p{color:var(--paper-dim); font-size:0.95rem; margin:0;}
+  .enfoque-card h3{font-family:var(--font-display); font-size:1.18rem; margin:0 0 10px;}
+  .enfoque-card p{color:var(--paper-dim); font-size:0.96rem; margin:0;}
 
-  /* CASOS - ruta */
-  .ruta{position:relative; margin-top:20px;}
-  .ruta::before{
-    content:""; position:absolute; left:19px; top:8px; bottom:8px; width:2px;
-    background-image:linear-gradient(var(--paper-dim) 60%, transparent 0%);
-    background-size:2px 12px; background-repeat:repeat-y; opacity:0.35;
+  /* ===== CASOS ===== */
+  .casos-grid{display:grid; grid-template-columns:1fr; gap:26px; margin-top:24px;}
+  .caso{
+    border:1px solid var(--glass-border); border-radius:var(--r-lg); padding:32px;
+    background:linear-gradient(160deg, rgba(246,239,227,0.05), rgba(246,239,227,0.02));
+    box-shadow:0 20px 40px -24px rgba(0,0,0,0.7);
+    transition:transform .3s var(--ease), border-color .3s ease;
   }
-  @media (max-width:640px){ .ruta::before{left:15px;} }
-
-  .caso{position:relative; padding-left:60px; margin-bottom:56px;}
-  @media (max-width:640px){ .caso{padding-left:48px;} }
-  .caso:last-child{margin-bottom:0;}
-  .caso .pin{
-    position:absolute; left:0; top:2px; width:40px; height:40px; border-radius:50%;
-    display:flex; align-items:center; justify-content:center;
-    font-family:var(--font-display); font-weight:800; font-size:0.95rem; color:var(--ink);
-    border:2px solid var(--bg);
+  .caso:hover{transform:translateY(-4px); border-color:rgba(228,53,107,0.35);}
+  .caso-head{display:flex; flex-wrap:wrap; align-items:center; gap:14px 18px; margin-bottom:10px;}
+  .caso-num{
+    font-family:var(--font-mono); font-size:0.78rem; color:var(--ink); background:var(--mustard);
+    width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700;
+    flex:none;
   }
-  @media (max-width:640px){ .caso .pin{width:32px; height:32px; font-size:0.8rem;} }
-  .caso:nth-child(1) .pin{background:var(--pink);}
-  .caso:nth-child(2) .pin{background:var(--mustard);}
-  .caso:nth-child(3) .pin{background:var(--teal);}
-  .caso:nth-child(4) .pin{background:var(--paper);}
-  .caso:nth-child(5) .pin{background:var(--pink);}
-  .caso:nth-child(6) .pin{background:var(--mustard);}
-
-  .caso-head{display:flex; flex-wrap:wrap; align-items:baseline; gap:10px 16px; margin-bottom:6px;}
-  .caso-head h3{font-family:var(--font-display); font-size:1.5rem; margin:0;}
+  .caso-head h3{font-family:var(--font-display); font-size:1.55rem; margin:0;}
   .caso-zona{font-family:var(--font-mono); font-size:0.78rem; color:var(--paper-dim); text-transform:uppercase; letter-spacing:0.06em;}
-  .caso-desc{color:var(--paper-dim); max-width:65ch; margin:0 0 18px;}
-  .caso-facts{display:flex; flex-wrap:wrap; gap:10px; margin-bottom:20px;}
+  .caso-desc{color:var(--paper-dim); max-width:70ch; margin:0 0 20px;}
+  .caso-facts{display:flex; flex-wrap:wrap; gap:10px; margin-bottom:24px;}
   .fact{
     font-family:var(--font-mono); font-size:0.82rem; background:rgba(246,239,227,0.08);
-    border:1px solid rgba(246,239,227,0.15); border-radius:8px; padding:6px 12px;
+    border:1px solid var(--glass-border); border-radius:8px; padding:6px 12px;
   }
   .fact b{color:var(--mustard);}
 
-  .gallery{display:grid; grid-template-columns:repeat(auto-fill, minmax(180px, 1fr)); gap:10px;}
-  @media (max-width:700px){ .gallery{grid-template-columns:repeat(2,1fr);} }
+  .gallery{display:grid; grid-template-columns:repeat(auto-fill, minmax(150px, 1fr)); gap:12px;}
+  @media (max-width:640px){ .gallery{grid-template-columns:repeat(2,1fr);} }
   .photo-slot{
-    aspect-ratio:4/5; border:2px dashed rgba(246,239,227,0.3); border-radius:10px;
+    aspect-ratio:4/5; border:2px dashed rgba(246,239,227,0.3); border-radius:var(--r-sm);
     display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
     color:var(--paper-dim); font-family:var(--font-mono); font-size:0.72rem; text-align:center; padding:8px;
   }
   .photo-slot .plus{font-size:1.4rem; color:var(--mustard);}
-  .photo-slot.photo{border:none; padding:0; overflow:hidden; box-shadow:0 10px 24px -12px rgba(0,0,0,0.6);}
-  .photo-slot.photo img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .4s ease;}
-  .photo-slot.photo:hover img{transform:scale(1.05);}
+  .photo-slot.photo{
+    border:none; padding:0; overflow:hidden; box-shadow:0 10px 24px -12px rgba(0,0,0,0.6);
+    cursor:zoom-in; position:relative; border-radius:var(--r-sm);
+  }
+  .photo-slot.photo img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s var(--ease);}
+  .photo-slot.photo:hover img{transform:scale(1.08);}
+  .photo-slot.photo::after{
+    content:"⤢"; position:absolute; right:8px; top:8px; width:26px; height:26px; border-radius:50%;
+    background:rgba(27,19,48,0.65); color:var(--paper); display:flex; align-items:center; justify-content:center;
+    font-size:0.85rem; opacity:0; transition:opacity .25s ease;
+  }
+  .photo-slot.photo:hover::after{opacity:1;}
 
-  /* POR QUE */
+  /* ===== PILARES ===== */
+  .pilares-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:22px;}
+  .pilar-card{
+    border:1px solid var(--glass-border); border-radius:var(--r-lg); padding:36px 30px;
+    background:radial-gradient(circle at 20% 0%, rgba(228,53,107,0.10), transparent 55%), rgba(246,239,227,0.03);
+    box-shadow:0 18px 36px -22px rgba(0,0,0,0.7);
+    transition:transform .3s var(--ease), border-color .3s ease;
+  }
+  .pilar-card:hover{transform:translateY(-6px); border-color:rgba(228,53,107,0.4);}
+  .pilar-card .num{font-family:var(--font-mono); color:var(--mustard); font-size:0.85rem; margin-bottom:18px; display:block;}
+  .pilar-card h3{font-family:var(--font-display); font-size:1.3rem; margin:0 0 12px;}
+  .pilar-card p{color:var(--paper-dim); margin:0; font-size:0.98rem;}
+
+  /* ===== ELEGIRNOS (icons grid) ===== */
+  .elegirnos{background:var(--bg-soft); border-radius:var(--r-lg); margin:0 20px;}
+  @media (max-width:640px){ .elegirnos{margin:0 8px; border-radius:20px;} }
+  .eleg-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px;}
+  .eleg-card{display:flex; gap:16px; padding:22px; border-radius:var(--r-md); background:rgba(246,239,227,0.04); border:1px solid var(--glass-border); transition:transform .3s var(--ease), border-color .3s ease;}
+  .eleg-card:hover{transform:translateY(-4px); border-color:rgba(31,166,160,0.5);}
+  .eleg-card .icon-badge{background:rgba(228,53,107,0.14); color:var(--pink); margin-bottom:0; flex:none;}
+  .eleg-card h3{font-family:var(--font-display); font-size:1.05rem; margin:0 0 6px;}
+  .eleg-card p{color:var(--paper-dim); font-size:0.9rem; margin:0;}
+
+  /* ===== POR QUE (existing detailed list) ===== */
   .porque-list{display:grid; grid-template-columns:repeat(2,1fr); gap:20px;}
   @media (max-width:700px){ .porque-list{grid-template-columns:1fr;} }
   .porque-item{
-    display:flex; gap:14px; padding:22px; border-radius:14px;
-    background:rgba(246,239,227,0.04); border:1px solid rgba(246,239,227,0.12);
+    display:flex; gap:14px; padding:24px; border-radius:var(--r-md);
+    background:rgba(246,239,227,0.04); border:1px solid var(--glass-border);
     box-shadow:0 14px 28px -18px rgba(0,0,0,0.55);
-    transition:transform .25s ease, border-color .25s ease;
+    transition:transform .3s var(--ease), border-color .3s ease;
   }
   .porque-item:hover{transform:translateY(-4px); border-color:rgba(31,166,160,0.5);}
   .porque-item .bullet{
@@ -254,70 +425,146 @@
   .porque-item h3{font-family:var(--font-display); font-size:1.05rem; margin:0 0 4px;}
   .porque-item p{color:var(--paper-dim); font-size:0.92rem; margin:0;}
 
-  /* CONTACTO */
+  /* ===== FOOTER ===== */
   footer.contact{
-    background:var(--paper); color:var(--ink); padding:80px 0 48px; border-radius:32px 32px 0 0; margin-top:20px;
+    background:var(--paper); color:var(--ink); padding:96px 0 40px; border-radius:40px 40px 0 0; margin-top:40px;
   }
   footer.contact h2{
-    font-family:var(--font-display); font-weight:800; font-size:clamp(1.8rem,4vw,2.8rem); margin:0 0 16px; max-width:16ch;
+    font-family:var(--font-display); font-weight:800; font-size:clamp(1.9rem,4.2vw,3rem); margin:0 0 16px; max-width:18ch;
   }
-  footer.contact p.lead{color:var(--ink-soft); max-width:50ch; margin:0 0 32px; font-size:1.05rem;}
-  .contact-grid{display:flex; flex-wrap:wrap; gap:14px; margin-bottom:40px;}
+  footer.contact p.lead{color:var(--ink-soft); max-width:52ch; margin:0 0 36px; font-size:1.08rem;}
+  .contact-grid{display:flex; flex-wrap:wrap; gap:14px; margin-bottom:44px;}
   .contact-pill{
     font-family:var(--font-mono); font-size:0.9rem; background:rgba(27,19,48,0.06); border:1px solid rgba(27,19,48,0.14);
-    border-radius:999px; padding:10px 18px;
+    border-radius:999px; padding:11px 20px;
   }
   .contact-pill mark.edit{background:var(--pink); color:var(--paper);}
-  .foot-bottom{display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:0.8rem; color:var(--ink-soft); border-top:1px solid rgba(27,19,48,0.12); padding-top:24px; margin-top:16px;}
+  .foot-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:40px; padding-top:44px; border-top:1px solid rgba(27,19,48,0.12);}
+  @media (max-width:760px){ .foot-grid{grid-template-columns:1fr; gap:32px;} }
+  .foot-grid h4{font-family:var(--font-mono); font-size:0.78rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink-soft); margin:0 0 16px;}
+  .foot-links{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px;}
+  .foot-links a{text-decoration:none; color:var(--ink); opacity:0.75; font-size:0.95rem; transition:opacity .2s ease;}
+  .foot-links a:hover{opacity:1; color:var(--pink);}
+  .foot-social{display:flex; gap:10px; margin-top:4px;}
+  .foot-social a{
+    width:38px; height:38px; border-radius:50%; border:1px solid rgba(27,19,48,0.16);
+    display:flex; align-items:center; justify-content:center; text-decoration:none; color:var(--ink);
+    transition:background .2s ease, color .2s ease, transform .2s ease;
+  }
+  .foot-social a:hover{background:var(--ink); color:var(--paper); transform:translateY(-3px);}
+  .foot-bottom{display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:0.8rem; color:var(--ink-soft); border-top:1px solid rgba(27,19,48,0.12); padding-top:24px; margin-top:36px;}
+
+  /* ===== LIGHTBOX ===== */
+  .lightbox{
+    position:fixed; inset:0; z-index:150; background:rgba(10,7,18,0.92);
+    display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none;
+    transition:opacity .3s ease;
+  }
+  .lightbox.open{opacity:1; pointer-events:auto;}
+  .lightbox img{max-width:88vw; max-height:82vh; border-radius:var(--r-sm); box-shadow:0 30px 60px -20px rgba(0,0,0,0.8);}
+  .lightbox .lb-close, .lightbox .lb-nav{
+    position:absolute; background:rgba(246,239,227,0.1); border:1px solid var(--glass-border); color:var(--paper);
+    border-radius:50%; width:46px; height:46px; display:flex; align-items:center; justify-content:center;
+    cursor:pointer; font-size:1.1rem; transition:background .2s ease;
+  }
+  .lightbox .lb-close{top:24px; right:24px;}
+  .lightbox .lb-close:hover, .lightbox .lb-nav:hover{background:rgba(246,239,227,0.2);}
+  .lightbox .lb-prev{left:24px; top:50%; transform:translateY(-50%);}
+  .lightbox .lb-next{right:24px; top:50%; transform:translateY(-50%);}
+  @media (max-width:640px){ .lightbox .lb-prev, .lightbox .lb-next{width:38px; height:38px;} }
 </style>
 </head>
 <body>
 
-<header class="nav">
+<a href="#main" class="skip-link">Saltar al contenido</a>
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<button class="menu-trigger" id="menuTrigger" aria-label="Abrir menú" aria-expanded="false" aria-controls="sideDrawer">
+  <span class="bars"><span></span><span></span><span></span></span>
+</button>
+<div class="drawer-backdrop" id="drawerBackdrop"></div>
+<aside class="drawer" id="sideDrawer" aria-label="Menú principal">
+  <div class="drawer-brand">KONECTA <span style="color:var(--mustard)">ANDINA</span></div>
+  <nav>
+    <a href="#inicio" data-drawer-link>Inicio</a>
+    <a href="#sobre" data-drawer-link>Sobre nosotros</a>
+    <a href="#metodologia" data-drawer-link>Cómo trabajamos</a>
+    <a href="#casos" data-drawer-link>Casos</a>
+    <a href="#servicios" data-drawer-link>Servicios</a>
+    <a href="#pilares" data-drawer-link>Nuestros pilares</a>
+    <a href="#elegirnos" data-drawer-link>¿Por qué elegirnos?</a>
+    <a href="#contacto" data-drawer-link>Contacto</a>
+  </nav>
+  <div class="drawer-cta">
+    <a href="#contacto" class="btn" style="width:100%; justify-content:center;" data-drawer-link>Solicita una propuesta</a>
+  </div>
+</aside>
+
+<nav class="dot-nav" id="dotNav" aria-hidden="true">
+  <a href="#inicio" data-label="Inicio" class="active"></a>
+  <a href="#sobre" data-label="Sobre nosotros"></a>
+  <a href="#metodologia" data-label="Cómo trabajamos"></a>
+  <a href="#servicios" data-label="Servicios"></a>
+  <a href="#casos" data-label="Casos"></a>
+  <a href="#pilares" data-label="Pilares"></a>
+  <a href="#elegirnos" data-label="Por qué elegirnos"></a>
+  <a href="#contacto" data-label="Contacto"></a>
+</nav>
+
+<button class="to-top" id="toTop" aria-label="Volver arriba">↑</button>
+
+<header class="nav" id="siteHeader">
   <div class="wrap">
-    <div class="brandmark">Stephanie Dueri<span>·</span>BTL</div>
-    <nav class="links">
-      <a href="#sobre">Sobre nosotros</a>
-      <a href="#enfoque">Cómo trabajamos</a>
-      <a href="#casos">Casos</a>
-      <a href="#porque">Por qué nosotros</a>
-      <a href="#contacto" class="nav-cta">Solicita una propuesta</a>
-    </nav>
+    <a href="#inicio" class="brandmark">KONECTA<span>·</span>ANDINA</a>
+    <a href="#contacto" class="nav-cta">Solicita una propuesta</a>
   </div>
 </header>
 
-<section class="hero">
+<main id="main">
+
+<section class="hero" id="inicio">
+  <svg class="hero-thread" viewBox="0 0 1200 500" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M-50,420 C 250,250 400,480 650,300 S 1050,80 1250,150" fill="none" stroke="url(#threadGrad)" stroke-width="1.5" opacity="0.5"/>
+    <defs>
+      <linearGradient id="threadGrad" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#E4356B"/>
+        <stop offset="50%" stop-color="#F0A93B"/>
+        <stop offset="100%" stop-color="#1FA6A0"/>
+      </linearGradient>
+    </defs>
+  </svg>
   <div class="wrap">
-    <p class="eyebrow">Equipo de activaciones BTL</p>
-    <h1>Creamos experiencias que hacen <em>crecer tu marca</em>.</h1>
-    <p class="lead">
-      Ejecutamos activaciones BTL en puntos de venta, farmacias, ferias y espacios de alto
+    <p class="eyebrow" data-animate="fade" style="--d:0ms">Konecta Andina · Ejecución BTL en terreno</p>
+    <h1 data-animate="fade" style="--d:80ms">Creamos experiencias que hacen <em>crecer tu marca</em>.</h1>
+    <p class="lead" data-animate="fade" style="--d:160ms">
+      Diseñamos y ejecutamos activaciones BTL en puntos de venta, farmacias, ferias y espacios de alto
       tránsito, acercando tu marca al consumidor justo en el momento en que decide qué comprar —
       con presencia de marca, impulso comercial y reportes que muestran resultados reales.
     </p>
-    <div class="hero-meta">
+    <div class="hero-meta" data-animate="fade" style="--d:240ms">
       <span><strong>Múltiples</strong> marcas activadas</span>
       <span><strong>Amplia</strong> cobertura de zonas</span>
       <span><strong>Presencia</strong> en distintas ciudades de Bolivia</span>
-      <span>Servicio de comprador incógnito incluido</span>
-      <span><strong><mark class="edit">[X meses/años]</mark></strong> de experiencia en campo</span>
+      <span>Comprador incógnito incluido</span>
     </div>
-    <div class="hero-actions">
+    <div class="hero-actions" data-animate="fade" style="--d:320ms">
       <a href="#contacto" class="btn">Conversemos sobre tu próxima activación</a>
       <a href="#casos" class="btn btn-ghost">Ver casos de trabajo</a>
     </div>
   </div>
+  <div class="scroll-cue" aria-hidden="true"><span>Explora</span><span class="line"></span></div>
 </section>
 <div class="stripe"><span></span><span></span><span></span></div>
 
 <section id="sobre">
   <div class="wrap about-grid">
-    <div class="reveal">
+    <div data-animate="slide-right">
+      <p class="section-eyebrow">Quiénes somos</p>
       <h2 class="section-title">Sobre nosotros</h2>
       <p>
-        Soy Stephanie Dueri Ibáñez, fundadora y coordinadora de Stephanie Dueri BTL. Empecé hace
-        <mark class="edit">[X meses]</mark> liderando activaciones en campo y, desde entonces, he formado un
-        equipo preparado para ejecutar campañas BTL de principio a fin.
+        Soy Estefany Dueri Ibáñez, fundadora y coordinadora de Konecta Andina. Lidero personalmente
+        cada activación en campo y, junto a mi equipo, ejecutamos campañas BTL de principio a fin,
+        con el mismo estándar de profesionalismo en cada punto de contacto.
       </p>
       <p>
         Trabajamos con marcas de distintas industrias —protección solar, higiene infantil, salud
@@ -332,7 +579,7 @@
         total transparencia sobre cómo se desarrolló su campaña.
       </p>
     </div>
-    <div class="reveal">
+    <div data-animate="slide-left">
       <div class="stat-card">
         <div class="num">Marcas</div>
         <div class="label">de distintas industrias ya confiaron en nuestro equipo: Solaris, Pañales Babu, Actifem, Antigripal LCH, ChocoBom y Sucranova</div>
@@ -349,35 +596,86 @@
   </div>
 </section>
 
-<section id="enfoque" class="enfoque">
+<section id="metodologia">
   <div class="wrap">
-    <h2 class="section-title reveal">Cómo trabajamos</h2>
-    <p class="section-sub reveal">Cada formato que ejecutamos está pensado para generar un resultado concreto en el negocio de la marca:</p>
+    <p class="section-eyebrow" data-animate="fade">Nuestro proceso</p>
+    <h2 class="section-title" data-animate="fade">Nuestra metodología</h2>
+    <p class="section-sub" data-animate="fade">Así trabajamos desde el primer contacto hasta la entrega del informe final de campaña.</p>
+    <div class="timeline">
+      <div class="tl-step" data-animate="fade">
+        <div class="pin">01</div>
+        <div class="tl-content">
+          <h3>Contacto y brief</h3>
+          <p>Escuchamos el objetivo de la marca, el producto y el resultado comercial que busca conseguir con la activación.</p>
+        </div>
+      </div>
+      <div class="tl-step" data-animate="fade" style="--d:80ms">
+        <div class="pin">02</div>
+        <div class="tl-content">
+          <h3>Diagnóstico y estrategia</h3>
+          <p>Analizamos el mercado, el público objetivo y el punto de venta para definir el formato de activación más adecuado.</p>
+        </div>
+      </div>
+      <div class="tl-step" data-animate="fade" style="--d:160ms">
+        <div class="pin">03</div>
+        <div class="tl-content">
+          <h3>Diseño de la activación</h3>
+          <p>Definimos equipo, materiales, cobertura y cronograma a la medida de la campaña y del presupuesto de la marca.</p>
+        </div>
+      </div>
+      <div class="tl-step" data-animate="fade" style="--d:240ms">
+        <div class="pin">04</div>
+        <div class="tl-content">
+          <h3>Ejecución en campo</h3>
+          <p>Nuestro equipo activa la marca con profesionalismo y presentación cuidada, siguiendo el protocolo definido.</p>
+        </div>
+      </div>
+      <div class="tl-step" data-animate="fade" style="--d:320ms">
+        <div class="pin">05</div>
+        <div class="tl-content">
+          <h3>Reporte final</h3>
+          <p>Entregamos un informe claro con el desarrollo real de la campaña, evidencia fotográfica y aprendizajes para la siguiente activación.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="servicios" class="servicios">
+  <div class="wrap">
+    <p class="section-eyebrow" data-animate="fade">Lo que hacemos</p>
+    <h2 class="section-title" data-animate="fade">Servicios</h2>
+    <p class="section-sub" data-animate="fade">Cada formato que ejecutamos está pensado para generar un resultado concreto en el negocio de la marca:</p>
     <div class="enfoque-grid">
-      <div class="enfoque-card reveal">
+      <div class="enfoque-card" data-animate="fade">
+        <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-6 9 6-9 6-9-6z"/><path d="M3 9v7l9 5 9-5V9"/></svg></div>
         <span class="tag">Punto de venta</span>
         <h3>Activación en tienda</h3>
-        <p>Acercamos tu producto al consumidor justo en el momento en que decide qué comprar, aumentando la visibilidad de la marca y empujando la decisión de compra en el punto exacto de venta.</p>
+        <p>Acercamos tu producto al consumidor justo en el momento en que decide qué comprar, aumentando la visibilidad de la marca en el punto exacto de venta.</p>
       </div>
-      <div class="enfoque-card reveal">
+      <div class="enfoque-card" data-animate="fade" style="--d:60ms">
+        <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 015 5c0 3-5 11-5 11S7 10 7 7a5 5 0 015-5z"/><circle cx="12" cy="7" r="1.6"/></svg></div>
         <span class="tag">Farmacia</span>
         <h3>Activación en farmacias</h3>
-        <p>Generamos confianza en el consumidor a través del contacto directo, la resolución de dudas y la entrega de incentivos, fortaleciendo la relación entre la marca y quien la compra.</p>
+        <p>Generamos confianza en el consumidor a través del contacto directo, la resolución de dudas y la entrega de incentivos.</p>
       </div>
-      <div class="enfoque-card reveal">
+      <div class="enfoque-card" data-animate="fade" style="--d:120ms">
+        <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg></div>
         <span class="tag">Calle y ferias</span>
         <h3>Activación de calle</h3>
-        <p>Multiplicamos la visibilidad de tu marca y su recordación en la mente del consumidor, llevando la experiencia directamente a la calle y a los espacios donde se concentra el público.</p>
+        <p>Multiplicamos la visibilidad y recordación de tu marca, llevando la experiencia a la calle y a los espacios donde se concentra el público.</p>
       </div>
-      <div class="enfoque-card reveal">
+      <div class="enfoque-card" data-animate="fade" style="--d:180ms">
+        <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l6 6L21 6"/></svg></div>
         <span class="tag">Venta directa</span>
         <h3>Impulso de ventas</h3>
-        <p>Acompañamos al consumidor durante su decisión de compra, incrementando la rotación del producto y traduciendo la presencia de marca en resultados comerciales concretos.</p>
+        <p>Acompañamos al consumidor durante su decisión de compra, incrementando la rotación del producto en el punto de venta.</p>
       </div>
-      <div class="enfoque-card reveal">
+      <div class="enfoque-card" data-animate="fade" style="--d:240ms">
+        <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
         <span class="tag">Comprador incógnito</span>
         <h3>Mystery shopper</h3>
-        <p>Evaluamos la experiencia real de compra para que la marca conozca cómo se siente atendido su cliente, y pueda mejorar su servicio con información objetiva y accionable.</p>
+        <p>Evaluamos la experiencia real de compra para que la marca conozca cómo se siente atendido su cliente, con información objetiva.</p>
       </div>
     </div>
   </div>
@@ -385,14 +683,15 @@
 
 <section id="casos">
   <div class="wrap">
-    <h2 class="section-title reveal">Casos de trabajo</h2>
-    <p class="section-sub reveal">Un recorrido por las marcas y formatos donde nuestro equipo ya estuvo en campo.</p>
+    <p class="section-eyebrow" data-animate="fade">Trabajo en campo</p>
+    <h2 class="section-title" data-animate="fade">Casos de trabajo</h2>
+    <p class="section-sub" data-animate="fade">Un recorrido por las marcas y formatos donde nuestro equipo ya estuvo en campo.</p>
 
-    <div class="ruta">
+    <div class="casos-grid">
 
-      <article class="caso reveal">
-        <div class="pin">01</div>
+      <article class="caso" data-animate="fade">
         <div class="caso-head">
+          <span class="caso-num">01</span>
           <h3>Solaris</h3>
           <span class="caso-zona">Calle y ferias · zona sur, zona norte, zona central</span>
         </div>
@@ -405,18 +704,18 @@
           <span class="fact">Formato: <b>Calle + ferias</b></span>
           <span class="fact">Cobertura: <b>Zona sur · Zona norte · Zona central</b></span>
         </div>
-        <div class="gallery">
-          <div class="photo-slot photo"><img src="3f244cf3-d92e-4d05-ac12-9fc1958391fc.jpeg" alt="Activación Solaris 1"></div>
-          <div class="photo-slot photo"><img src="508c4df2-487b-492e-bebc-92a16570e655.jpeg" alt="Activación Solaris 2"></div>
-          <div class="photo-slot photo"><img src="IMG_1845.jpeg" alt="Activación Solaris 3"></div>
-          <div class="photo-slot photo"><img src="IMG_1860.jpeg" alt="Activación Solaris 4"></div>
-          <div class="photo-slot photo"><img src="IMG_1872.jpeg" alt="Activación Solaris 5"></div>
+        <div class="gallery" data-lightbox-group="solaris">
+          <div class="photo-slot photo"><img loading="lazy" src="3f244cf3-d92e-4d05-ac12-9fc1958391fc.jpeg" alt="Activación Solaris 1"></div>
+          <div class="photo-slot photo"><img loading="lazy" src="508c4df2-487b-492e-bebc-92a16570e655.jpeg" alt="Activación Solaris 2"></div>
+          <div class="photo-slot photo"><img loading="lazy" src="IMG_1845.jpeg" alt="Activación Solaris 3"></div>
+          <div class="photo-slot photo"><img loading="lazy" src="IMG_1860.jpeg" alt="Activación Solaris 4"></div>
+          <div class="photo-slot photo"><img loading="lazy" src="IMG_1872.jpeg" alt="Activación Solaris 5"></div>
         </div>
       </article>
 
-      <article class="caso reveal">
-        <div class="pin">02</div>
+      <article class="caso" data-animate="fade">
         <div class="caso-head">
+          <span class="caso-num">02</span>
           <h3>Pañales Babu</h3>
           <span class="caso-zona">Impulso de ventas</span>
         </div>
@@ -428,18 +727,18 @@
         <div class="caso-facts">
           <span class="fact">Formato: <b>Venta directa</b></span>
         </div>
-        <div class="gallery">
-          <div class="photo-slot photo"><img src="05689420-3c74-4f10-9e25-70692522c29e.jpeg" alt="Activación Pañales Babú 1"></div>
-          <div class="photo-slot photo"><img src="06c26bf4-60ad-4764-a5a5-a3cf39ddc8e0.jpeg" alt="Activación Pañales Babú 2"></div>
-          <div class="photo-slot photo"><img src="38dbb822-d3e6-481a-bfea-cb614ded9d63.jpeg" alt="Activación Pañales Babú 3"></div>
-          <div class="photo-slot photo"><img src="8b408670-f142-403c-9248-eed430c66255.jpeg" alt="Activación Pañales Babú 4"></div>
-          <div class="photo-slot photo"><img src="c4a0bf28-5b7d-423f-aa91-dbe98dc8a112.jpeg" alt="Activación Pañales Babú 5"></div>
+        <div class="gallery" data-lightbox-group="babu">
+          <div class="photo-slot photo"><img loading="lazy" src="05689420-3c74-4f10-9e25-70692522c29e.jpeg" alt="Activación Pañales Babú 1"></div>
+          <div class="photo-slot photo"><img loading="lazy" src="06c26bf4-60ad-4764-a5a5-a3cf39ddc8e0.jpeg" alt="Activación Pañales Babú 2"></div>
+          <div class="photo-slot photo"><img loading="lazy" src="38dbb822-d3e6-481a-bfea-cb614ded9d63.jpeg" alt="Activación Pañales Babú 3"></div>
+          <div class="photo-slot photo"><img loading="lazy" src="8b408670-f142-403c-9248-eed430c66255.jpeg" alt="Activación Pañales Babú 4"></div>
+          <div class="photo-slot photo"><img loading="lazy" src="c4a0bf28-5b7d-423f-aa91-dbe98dc8a112.jpeg" alt="Activación Pañales Babú 5"></div>
         </div>
       </article>
 
-      <article class="caso reveal">
-        <div class="pin">03</div>
+      <article class="caso" data-animate="fade">
         <div class="caso-head">
+          <span class="caso-num">03</span>
           <h3>ChocoBom</h3>
           <span class="caso-zona">Reposición de producto · zona central y zona norte</span>
         </div>
@@ -452,18 +751,18 @@
           <span class="fact">Formato: <b>Reposición y merchandising</b></span>
           <span class="fact">Cobertura: <b>Zona central · Zona norte</b></span>
         </div>
-        <div class="gallery">
-          <div class="photo-slot photo"><img src="1773d480-3780-4768-96b9-cf77295ed2f6.jpeg" alt="Activación ChocoBom 1"></div>
-          <div class="photo-slot photo"><img src="41e977f5-0685-48dc-89d5-f6df7337bca9.jpeg" alt="Activación ChocoBom 2"></div>
-          <div class="photo-slot photo"><img src="8450284a-6bb4-4794-8eef-5e1be66b4b4a.jpeg" alt="Activación ChocoBom 3"></div>
-          <div class="photo-slot photo"><img src="a7b8dd94-418e-4a12-87e9-1e208d8ae295.jpeg" alt="Activación ChocoBom 4"></div>
-          <div class="photo-slot photo"><img src="ba8e24a9-eabd-471c-8884-aa49d0046c7f.jpeg" alt="Activación ChocoBom 5"></div>
+        <div class="gallery" data-lightbox-group="chocobom">
+          <div class="photo-slot photo"><img loading="lazy" src="1773d480-3780-4768-96b9-cf77295ed2f6.jpeg" alt="Activación ChocoBom 1"></div>
+          <div class="photo-slot photo"><img loading="lazy" src="41e977f5-0685-48dc-89d5-f6df7337bca9.jpeg" alt="Activación ChocoBom 2"></div>
+          <div class="photo-slot photo"><img loading="lazy" src="8450284a-6bb4-4794-8eef-5e1be66b4b4a.jpeg" alt="Activación ChocoBom 3"></div>
+          <div class="photo-slot photo"><img loading="lazy" src="a7b8dd94-418e-4a12-87e9-1e208d8ae295.jpeg" alt="Activación ChocoBom 4"></div>
+          <div class="photo-slot photo"><img loading="lazy" src="ba8e24a9-eabd-471c-8884-aa49d0046c7f.jpeg" alt="Activación ChocoBom 5"></div>
         </div>
       </article>
 
-      <article class="caso reveal">
-        <div class="pin">04</div>
+      <article class="caso" data-animate="fade">
         <div class="caso-head">
+          <span class="caso-num">04</span>
           <h3>Actifem</h3>
           <span class="caso-zona">Farmacias y calle</span>
         </div>
@@ -475,18 +774,18 @@
         <div class="caso-facts">
           <span class="fact">Formato: <b>Farmacia + Calle</b></span>
         </div>
-        <div class="gallery">
-          <div class="photo-slot photo"><img src="25555f70-0ac8-47c0-9322-2cc72c72174b.jpeg" alt="Activación Actifem 1"></div>
-          <div class="photo-slot photo"><img src="3d789388-f391-4e4d-b2e8-8201a6e88a0e.jpeg" alt="Activación Actifem 2"></div>
-          <div class="photo-slot photo"><img src="67c7a8be-bf02-4c24-95b7-03dc032eb682.jpeg" alt="Activación Actifem 3"></div>
-          <div class="photo-slot photo"><img src="f1c59eb7-a074-4385-829a-e4ae0c7bbaa5.jpeg" alt="Activación Actifem 4"></div>
-          <div class="photo-slot photo"><img src="fc1a8943-361d-4e0b-9b27-9eea1b21c6d8.jpeg" alt="Activación Actifem 5"></div>
+        <div class="gallery" data-lightbox-group="actifem">
+          <div class="photo-slot photo"><img loading="lazy" src="25555f70-0ac8-47c0-9322-2cc72c72174b.jpeg" alt="Activación Actifem 1"></div>
+          <div class="photo-slot photo"><img loading="lazy" src="3d789388-f391-4e4d-b2e8-8201a6e88a0e.jpeg" alt="Activación Actifem 2"></div>
+          <div class="photo-slot photo"><img loading="lazy" src="67c7a8be-bf02-4c24-95b7-03dc032eb682.jpeg" alt="Activación Actifem 3"></div>
+          <div class="photo-slot photo"><img loading="lazy" src="f1c59eb7-a074-4385-829a-e4ae0c7bbaa5.jpeg" alt="Activación Actifem 4"></div>
+          <div class="photo-slot photo"><img loading="lazy" src="fc1a8943-361d-4e0b-9b27-9eea1b21c6d8.jpeg" alt="Activación Actifem 5"></div>
         </div>
       </article>
 
-      <article class="caso reveal">
-        <div class="pin">05</div>
+      <article class="caso" data-animate="fade">
         <div class="caso-head">
+          <span class="caso-num">05</span>
           <h3>Antigripal LCH</h3>
           <span class="caso-zona">Farmacias, calles y ferias</span>
         </div>
@@ -498,18 +797,18 @@
         <div class="caso-facts">
           <span class="fact">Formato: <b>Farmacia + Calle + Ferias</b></span>
         </div>
-        <div class="gallery">
-          <div class="photo-slot photo"><img src="02ca90b1-147b-498a-827b-cb36ff3b5474.jpeg" alt="Activación Antigripal LCH 1"></div>
-          <div class="photo-slot photo"><img src="1856d650-6400-467f-b7a4-35d487cfa6fc.jpeg" alt="Activación Antigripal LCH 2"></div>
-          <div class="photo-slot photo"><img src="6212746d-67ee-4ed7-9c9d-21c880361b1e.jpeg" alt="Activación Antigripal LCH 3"></div>
-          <div class="photo-slot photo"><img src="814f9242-add5-43c2-b39c-8c752cfa9a83.jpeg" alt="Activación Antigripal LCH 4"></div>
-          <div class="photo-slot photo"><img src="fac8e15d-add4-49ca-a366-335164897d26.jpeg" alt="Activación Antigripal LCH 5"></div>
+        <div class="gallery" data-lightbox-group="lch">
+          <div class="photo-slot photo"><img loading="lazy" src="02ca90b1-147b-498a-827b-cb36ff3b5474.jpeg" alt="Activación Antigripal LCH 1"></div>
+          <div class="photo-slot photo"><img loading="lazy" src="1856d650-6400-467f-b7a4-35d487cfa6fc.jpeg" alt="Activación Antigripal LCH 2"></div>
+          <div class="photo-slot photo"><img loading="lazy" src="6212746d-67ee-4ed7-9c9d-21c880361b1e.jpeg" alt="Activación Antigripal LCH 3"></div>
+          <div class="photo-slot photo"><img loading="lazy" src="814f9242-add5-43c2-b39c-8c752cfa9a83.jpeg" alt="Activación Antigripal LCH 4"></div>
+          <div class="photo-slot photo"><img loading="lazy" src="fac8e15d-add4-49ca-a366-335164897d26.jpeg" alt="Activación Antigripal LCH 5"></div>
         </div>
       </article>
 
-      <article class="caso reveal">
-        <div class="pin">06</div>
+      <article class="caso" data-animate="fade">
         <div class="caso-head">
+          <span class="caso-num">06</span>
           <h3>Sucranova</h3>
           <span class="caso-zona">Punto de venta</span>
         </div>
@@ -521,103 +820,224 @@
         <div class="caso-facts">
           <span class="fact">Formato: <b>Punto de venta</b></span>
         </div>
-        <div class="gallery">
-          <div class="photo-slot photo"><img src="1fbfd266-d961-4952-a9d7-3ad9f769b13e.jpeg" alt="Activación Sucranova 1"></div>
-          <div class="photo-slot photo"><img src="2346916a-ef12-4d3a-90d2-efeda9a47c91.jpeg" alt="Activación Sucranova 2"></div>
-          <div class="photo-slot photo"><img src="2a06d050-2094-4c4d-9e33-6fad4eac786d.jpeg" alt="Activación Sucranova 3"></div>
-          <div class="photo-slot photo"><img src="59b9f4f3-059d-43cd-874f-81d4d6c0042b.jpeg" alt="Activación Sucranova 4"></div>
-          <div class="photo-slot photo"><img src="f281f378-0b4b-46f9-b7ef-bebf0347669c.jpeg" alt="Activación Sucranova 5"></div>
+        <div class="gallery" data-lightbox-group="sucranova">
+          <div class="photo-slot photo"><img loading="lazy" src="1fbfd266-d961-4952-a9d7-3ad9f769b13e.jpeg" alt="Activación Sucranova 1"></div>
+          <div class="photo-slot photo"><img loading="lazy" src="2346916a-ef12-4d3a-90d2-efeda9a47c91.jpeg" alt="Activación Sucranova 2"></div>
+          <div class="photo-slot photo"><img loading="lazy" src="2a06d050-2094-4c4d-9e33-6fad4eac786d.jpeg" alt="Activación Sucranova 3"></div>
+          <div class="photo-slot photo"><img loading="lazy" src="59b9f4f3-059d-43cd-874f-81d4d6c0042b.jpeg" alt="Activación Sucranova 4"></div>
+          <div class="photo-slot photo"><img loading="lazy" src="f281f378-0b4b-46f9-b7ef-bebf0347669c.jpeg" alt="Activación Sucranova 5"></div>
         </div>
       </article>
 
     </div>
 
-    <div class="cta-strip reveal">
+    <div class="cta-strip" data-animate="fade">
       <p>Conversemos sobre tu próxima activación.</p>
       <a href="#contacto" class="btn btn-dark">Solicita una propuesta</a>
     </div>
   </div>
 </section>
 
+<section id="pilares">
+  <div class="wrap">
+    <p class="section-eyebrow" data-animate="fade">Nuestra forma de trabajar</p>
+    <h2 class="section-title" data-animate="fade">Nuestros pilares</h2>
+    <p class="section-sub" data-animate="fade">Los principios que guían cada campaña, sin importar el tamaño de la marca.</p>
+    <div class="pilares-grid">
+      <div class="pilar-card" data-animate="zoom">
+        <span class="num">01</span>
+        <h3>Diagnóstico personalizado</h3>
+        <p>Antes de proponer una activación, entendemos el producto, el mercado y el consumidor de cada marca.</p>
+      </div>
+      <div class="pilar-card" data-animate="zoom" style="--d:60ms">
+        <span class="num">02</span>
+        <h3>Alianza WIN-WIN</h3>
+        <p>Buscamos resultados que beneficien tanto a la marca como al punto de venta y al consumidor final.</p>
+      </div>
+      <div class="pilar-card" data-animate="zoom" style="--d:120ms">
+        <span class="num">03</span>
+        <h3>Compromiso total</h3>
+        <p>Cada campaña se ejecuta con la misma dedicación, sin importar el tamaño o la duración del proyecto.</p>
+      </div>
+      <div class="pilar-card" data-animate="zoom" style="--d:180ms">
+        <span class="num">04</span>
+        <h3>Impecabilidad operativa</h3>
+        <p>Cuidamos cada detalle en campo: presentación, materiales, tiempos y protocolo de la marca.</p>
+      </div>
+      <div class="pilar-card" data-animate="zoom" style="--d:240ms">
+        <span class="num">05</span>
+        <h3>Mejora continua</h3>
+        <p>Analizamos cada campaña para aplicar aprendizajes y elevar el estándar en la siguiente activación.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="elegirnos" class="elegirnos">
+  <div class="wrap">
+    <p class="section-eyebrow" data-animate="fade">Nuestro diferencial</p>
+    <h2 class="section-title" data-animate="fade">¿Por qué elegirnos?</h2>
+    <p class="section-sub" data-animate="fade">Lo que garantizamos a cada marca que confía su activación en nuestro equipo.</p>
+    <div class="eleg-grid">
+      <div class="eleg-card" data-animate="fade">
+        <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <div><h3>Supervisión permanente</h3><p>Un coordinador de campo acompaña cada jornada de principio a fin.</p></div>
+      </div>
+      <div class="eleg-card" data-animate="fade" style="--d:50ms">
+        <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg></div>
+        <div><h3>KPIs</h3><p>Definimos indicadores claros para medir el desempeño real de cada activación.</p></div>
+      </div>
+      <div class="eleg-card" data-animate="fade" style="--d:100ms">
+        <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg></div>
+        <div><h3>Reportes accionables</h3><p>Informes pensados para tomar decisiones, no solo para archivar.</p></div>
+      </div>
+      <div class="eleg-card" data-animate="fade" style="--d:150ms">
+        <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></div>
+        <div><h3>Capacitación</h3><p>Nuestro equipo recibe formación específica sobre el producto antes de salir a campo.</p></div>
+      </div>
+      <div class="eleg-card" data-animate="fade" style="--d:200ms">
+        <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 11-3.5-7.1M21 4v6h-6"/></svg></div>
+        <div><h3>Flexibilidad</h3><p>Adaptamos el formato de activación al presupuesto y los tiempos de cada marca.</p></div>
+      </div>
+      <div class="eleg-card" data-animate="fade" style="--d:250ms">
+        <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+        <div><h3>Respuesta rápida</h3><p>Coordinamos e implementamos activaciones en plazos ajustados cuando la marca lo necesita.</p></div>
+      </div>
+      <div class="eleg-card" data-animate="fade" style="--d:300ms">
+        <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.5-7-11a7 7 0 0114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.4"/></svg></div>
+        <div><h3>Cobertura</h3><p>Presencia en distintas zonas de la ciudad, con proyección a otras ciudades de Bolivia.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="porque">
   <div class="wrap">
-    <h2 class="section-title reveal">¿Por qué trabajar con nosotros?</h2>
-    <p class="section-sub reveal">Esto es lo que ofrecemos a las marcas que confían en nuestro equipo, campaña tras campaña.</p>
+    <p class="section-eyebrow" data-animate="fade">Más razones</p>
+    <h2 class="section-title" data-animate="fade">¿Por qué trabajar con nosotros?</h2>
+    <p class="section-sub" data-animate="fade">Esto es lo que ofrecemos a las marcas que confían en nuestro equipo, campaña tras campaña.</p>
     <div class="porque-list">
-      <div class="porque-item reveal">
+      <div class="porque-item" data-animate="fade">
         <div class="bullet">1</div>
         <div>
           <h3>Nos adaptamos a cada marca</h3>
           <p>Antes de iniciar una activación analizamos el mercado, el producto, el público objetivo, el comportamiento del consumidor y el tipo de comunicación que necesita la marca, para diseñar una activación que realmente conecte con las personas adecuadas.</p>
         </div>
       </div>
-      <div class="porque-item reveal">
+      <div class="porque-item" data-animate="fade" style="--d:40ms">
         <div class="bullet">2</div>
         <div>
           <h3>El formato más completo del mercado</h3>
           <p>Cubrimos punto de venta, farmacia, calle, ferias, venta directa <b>y comprador incógnito</b> con un mismo equipo: la marca no necesita coordinar varios proveedores para ejecutar una campaña completa.</p>
         </div>
       </div>
-      <div class="porque-item reveal">
+      <div class="porque-item" data-animate="fade" style="--d:80ms">
         <div class="bullet">3</div>
         <div>
           <h3>Activaciones a la medida de cada marca</h3>
           <p>Trabajamos con marcas reconocidas de diferentes industrias y diseñamos cada activación según el producto, el público objetivo y los resultados que la marca busca conseguir.</p>
         </div>
       </div>
-      <div class="porque-item reveal">
+      <div class="porque-item" data-animate="fade" style="--d:120ms">
         <div class="bullet">4</div>
         <div>
           <h3>Un equipo que representa tu marca</h3>
           <p>Presentación cuidada, trato cercano y profesionalismo en cada punto de contacto. Nos involucramos con cada campaña como si fuera nuestra propia marca, buscando siempre superar las expectativas del cliente.</p>
         </div>
       </div>
-      <div class="porque-item reveal">
+      <div class="porque-item" data-animate="fade" style="--d:160ms">
         <div class="bullet">5</div>
         <div>
           <h3>Reportes claros de principio a fin</h3>
           <p>Cada jornada cierra con un informe que muestra el desarrollo real de la campaña, para que la marca siempre sepa qué pasó en el punto de venta, no solo vea fotos.</p>
         </div>
       </div>
-      <div class="porque-item reveal">
+      <div class="porque-item" data-animate="fade" style="--d:200ms">
         <div class="bullet">6</div>
         <div>
           <h3>Mirada de comprador incógnito</h3>
           <p>Además de activar, sabemos evaluar: atención, cumplimiento de protocolo y experiencia de compra reales, vistas desde adentro del punto de venta —una ventaja que pocos equipos BTL ofrecen.</p>
         </div>
       </div>
+      <div class="porque-item" data-animate="fade" style="--d:240ms">
+        <div class="bullet">7</div>
+        <div>
+          <h3>Resultados, no solo acciones</h3>
+          <p>No ejecutamos actividades sueltas: convertimos la presencia de tu marca en el punto de venta en impacto real y medible para tu negocio.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
+
+</main>
 
 <footer class="contact" id="contacto">
   <div class="wrap">
     <h2>Trabajemos tu próxima activación.</h2>
     <p class="lead">Cuéntanos qué necesita la marca y armamos el formato de activación desde cero.</p>
     <div class="contact-grid">
-      <span class="contact-pill">📞 <mark class="edit">[teléfono]</mark></span>
+      <span class="contact-pill">📞 72003436 · 71536209</span>
       <span class="contact-pill">✉️ <mark class="edit">[email]</mark></span>
-      <span class="contact-pill">📷 <mark class="edit">[Instagram]</mark></span>
-      <span class="contact-pill">📍 La Paz, Bolivia</span>
+      <span class="contact-pill">📍 Av. Strongest, Calle 32 y 33 N.º 56, Achumani, La Paz, Bolivia</span>
+      <span class="contact-pill">🌐 www.konecta-andina.com</span>
     </div>
-    <div class="hero-actions" style="margin-bottom:24px;">
+    <div class="hero-actions" style="margin-bottom:56px;">
       <a href="#contacto" class="btn">Solicita una propuesta personalizada</a>
     </div>
+
+    <div class="foot-grid">
+      <div>
+        <h4>Konecta Andina</h4>
+        <p style="color:var(--ink-soft); max-width:36ch; margin:0 0 18px; font-size:0.95rem;">Agencia BTL especializada en punto de venta, farmacias, calle, ferias y comprador incógnito.</p>
+        <div class="foot-social">
+          <a href="#" aria-label="WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 11.5a8.4 8.4 0 01-9.9 8.3 8.5 8.5 0 01-4-1.4L3 20l1.6-4a8.4 8.4 0 01-1.3-4.5A8.4 8.4 0 0112 3a8.4 8.4 0 019 8.5z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 10v7M7 7v.01M12 17v-4a2 2 0 014 0v4M12 13v4"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Navegación</h4>
+        <ul class="foot-links">
+          <li><a href="#sobre">Sobre nosotros</a></li>
+          <li><a href="#metodologia">Cómo trabajamos</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#casos">Casos</a></li>
+          <li><a href="#pilares">Nuestros pilares</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul class="foot-links">
+          <li><a href="#contacto">Solicita una propuesta</a></li>
+          <li><a href="#elegirnos">¿Por qué elegirnos?</a></li>
+          <li><a href="#porque">¿Por qué trabajar con nosotros?</a></li>
+        </ul>
+      </div>
+    </div>
+
     <div class="foot-bottom">
-      <span>Stephanie Dueri BTL · Equipo de activaciones</span>
+      <span>Konecta Andina · Ejecución en terreno</span>
       <span><mark class="edit">[año]</mark></span>
     </div>
   </div>
 </footer>
 
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Galería de imágenes">
+  <button class="lb-close" id="lbClose" aria-label="Cerrar">✕</button>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Anterior">‹</button>
+  <img id="lbImg" src="" alt="">
+  <button class="lb-nav lb-next" id="lbNext" aria-label="Siguiente">›</button>
+</div>
+
 <script>
-  (function(){
-    var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var items = document.querySelectorAll('.reveal');
-    if(prefersReduced || !('IntersectionObserver' in window)){
-      items.forEach(function(el){ el.classList.add('is-visible'); });
-      return;
-    }
+(function(){
+  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- reveal on scroll ---- */
+  var items = document.querySelectorAll('[data-animate]');
+  if(prefersReduced || !('IntersectionObserver' in window)){
+    items.forEach(function(el){ el.classList.add('is-visible'); });
+  } else {
     var observer = new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
         if(entry.isIntersecting){
@@ -627,7 +1047,106 @@
       });
     }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
     items.forEach(function(el){ observer.observe(el); });
-  })();
+  }
+
+  /* ---- scroll progress + header state + back to top ---- */
+  var progress = document.getElementById('scrollProgress');
+  var header = document.getElementById('siteHeader');
+  var toTop = document.getElementById('toTop');
+  function onScroll(){
+    var h = document.documentElement;
+    var scrolled = h.scrollTop || document.body.scrollTop;
+    var max = h.scrollHeight - h.clientHeight;
+    var pct = max > 0 ? (scrolled / max) * 100 : 0;
+    progress.style.width = pct + '%';
+    header.classList.toggle('scrolled', scrolled > 30);
+    toTop.classList.toggle('show', scrolled > 500);
+  }
+  document.addEventListener('scroll', onScroll, { passive:true });
+  onScroll();
+  toTop.addEventListener('click', function(){
+    window.scrollTo({ top:0, behavior: prefersReduced ? 'auto' : 'smooth' });
+  });
+
+  /* ---- floating hamburger + drawer ---- */
+  var body = document.body;
+  var trigger = document.getElementById('menuTrigger');
+  var backdrop = document.getElementById('drawerBackdrop');
+  var drawer = document.getElementById('sideDrawer');
+  function openDrawer(){
+    body.classList.add('drawer-open');
+    trigger.setAttribute('aria-expanded', 'true');
+  }
+  function closeDrawer(){
+    body.classList.remove('drawer-open');
+    trigger.setAttribute('aria-expanded', 'false');
+  }
+  trigger.addEventListener('click', function(){
+    body.classList.contains('drawer-open') ? closeDrawer() : openDrawer();
+  });
+  backdrop.addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeDrawer(); });
+  drawer.querySelectorAll('[data-drawer-link]').forEach(function(a){
+    a.addEventListener('click', closeDrawer);
+  });
+
+  /* ---- active section: drawer links + dot nav ---- */
+  var sections = Array.prototype.slice.call(document.querySelectorAll('section[id]'));
+  var drawerLinks = drawer.querySelectorAll('nav a[href^="#"]');
+  var dotLinks = document.querySelectorAll('.dot-nav a[href^="#"]');
+  function setActive(id){
+    drawerLinks.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#' + id); });
+    dotLinks.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#' + id); });
+  }
+  if('IntersectionObserver' in window){
+    var secObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){ setActive(entry.target.id); }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+    sections.forEach(function(s){ secObserver.observe(s); });
+  }
+
+  /* ---- lightbox gallery ---- */
+  var lightbox = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lbImg');
+  var lbClose = document.getElementById('lbClose');
+  var lbPrev = document.getElementById('lbPrev');
+  var lbNext = document.getElementById('lbNext');
+  var currentGroup = [];
+  var currentIndex = 0;
+
+  function openLightbox(group, index){
+    currentGroup = group;
+    currentIndex = index;
+    lbImg.src = currentGroup[currentIndex].src;
+    lbImg.alt = currentGroup[currentIndex].alt;
+    lightbox.classList.add('open');
+  }
+  function closeLightbox(){ lightbox.classList.remove('open'); }
+  function showDelta(delta){
+    currentIndex = (currentIndex + delta + currentGroup.length) % currentGroup.length;
+    lbImg.src = currentGroup[currentIndex].src;
+    lbImg.alt = currentGroup[currentIndex].alt;
+  }
+
+  document.querySelectorAll('.gallery').forEach(function(gallery){
+    var imgs = Array.prototype.slice.call(gallery.querySelectorAll('img'));
+    imgs.forEach(function(img, idx){
+      img.parentElement.addEventListener('click', function(){ openLightbox(imgs, idx); });
+    });
+  });
+  lbClose.addEventListener('click', closeLightbox);
+  lbPrev.addEventListener('click', function(){ showDelta(-1); });
+  lbNext.addEventListener('click', function(){ showDelta(1); });
+  lightbox.addEventListener('click', function(e){ if(e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', function(e){
+    if(!lightbox.classList.contains('open')) return;
+    if(e.key === 'Escape') closeLightbox();
+    if(e.key === 'ArrowLeft') showDelta(-1);
+    if(e.key === 'ArrowRight') showDelta(1);
+  });
+})();
 </script>
 
 </body>
