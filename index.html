@@ -71,6 +71,21 @@
   .wrap{max-width:1160px; margin:0 auto; padding:0 28px;}
   @media (max-width:640px){ .wrap{padding:0 20px;} }
 
+  /* ===== NETWORK BACKGROUND (fondo animado de conexiones) =====
+     Canvas fijo a toda la pantalla, detrás de absolutamente todo el
+     contenido (z-index:-1). El propio canvas pinta el color de fondo
+     de la marca en cada frame, así que sirve como fondo real de la
+     página, no solo como decoración superpuesta. */
+  #networkCanvas{
+    position:fixed;
+    inset:0;
+    width:100vw;
+    height:100vh;
+    z-index:-1;
+    display:block;
+    background:var(--bg);
+  }
+
   /* ===== scroll progress ===== */
   .scroll-progress{
     position:fixed; top:0; left:0; height:3px; width:0%;
@@ -201,6 +216,22 @@
   .btn.btn-dark{background:var(--ink); color:var(--paper); box-shadow:0 10px 26px -10px rgba(27,19,48,0.5);}
   .btn.btn-dark:hover{background:var(--pink); box-shadow:0 14px 30px -10px rgba(228,53,107,0.55);}
 
+  /* CTA principal del footer: más grande y con un brillo que respira,
+     para que sea el punto focal claro de la sección final. */
+  .btn-mega{
+    font-size:1.15rem; padding:22px 44px;
+    background:linear-gradient(120deg, var(--pink), var(--mustard) 55%, var(--teal));
+    background-size:200% auto;
+    box-shadow:0 18px 40px -12px rgba(228,53,107,0.55);
+    animation:mega-glow 3.2s ease-in-out infinite;
+  }
+  .btn-mega:hover{ transform:translateY(-4px) scale(1.02); }
+  @keyframes mega-glow{
+    0%,100%{ background-position:0% 50%; box-shadow:0 18px 40px -12px rgba(228,53,107,0.55); }
+    50%{ background-position:100% 50%; box-shadow:0 18px 46px -10px rgba(31,166,160,0.5); }
+  }
+  @media (prefers-reduced-motion: reduce){ .btn-mega{ animation:none; } }
+
   .cta-strip{
     margin-top:64px; padding:40px; border-radius:var(--r-lg);
     background:linear-gradient(120deg, rgba(228,53,107,0.14), rgba(31,166,160,0.12));
@@ -270,7 +301,7 @@
   p.section-sub{color:var(--paper-dim); max-width:62ch; margin:0 0 56px; font-size:1.05rem;}
 
   /* ===== SOBRE NOSOTROS ===== */
-  #sobre{background:var(--bg-soft); border-radius:var(--r-lg); margin:0 20px;}
+  #sobre{background:rgba(36,26,63,0.82); backdrop-filter:blur(22px) saturate(130%); -webkit-backdrop-filter:blur(22px) saturate(130%); border:1px solid var(--glass-border); border-radius:var(--r-lg); margin:0 20px;}
   @media (max-width:640px){ #sobre{margin:0 8px; border-radius:20px;} }
   .about-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:start;}
   @media (max-width:800px){ .about-grid{grid-template-columns:1fr;} }
@@ -316,7 +347,7 @@
   .tl-step p{color:var(--paper-dim); max-width:60ch; margin:0;}
 
   /* ===== SERVICIOS ===== */
-  .servicios{background:var(--bg-soft); border-radius:var(--r-lg); margin:0 20px;}
+  .servicios{background:rgba(36,26,63,0.82); backdrop-filter:blur(22px) saturate(130%); -webkit-backdrop-filter:blur(22px) saturate(130%); border:1px solid var(--glass-border); border-radius:var(--r-lg); margin:0 20px;}
   @media (max-width:640px){ .servicios{margin:0 8px; border-radius:20px;} }
   .enfoque-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:22px;}
   @media (max-width:700px){ .enfoque-grid{grid-template-columns:1fr;} }
@@ -399,7 +430,7 @@
   .pilar-card p{color:var(--paper-dim); margin:0; font-size:0.98rem;}
 
   /* ===== ELEGIRNOS (icons grid) ===== */
-  .elegirnos{background:var(--bg-soft); border-radius:var(--r-lg); margin:0 20px;}
+  .elegirnos{background:rgba(36,26,63,0.82); backdrop-filter:blur(22px) saturate(130%); -webkit-backdrop-filter:blur(22px) saturate(130%); border:1px solid var(--glass-border); border-radius:var(--r-lg); margin:0 20px;}
   @media (max-width:640px){ .elegirnos{margin:0 8px; border-radius:20px;} }
   .eleg-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px;}
   .eleg-card{display:flex; gap:16px; padding:22px; border-radius:var(--r-md); background:rgba(246,239,227,0.04); border:1px solid var(--glass-border); transition:transform .3s var(--ease), border-color .3s ease;}
@@ -427,17 +458,38 @@
 
   /* ===== FOOTER ===== */
   footer.contact{
-    background:var(--paper); color:var(--ink); padding:96px 0 40px; border-radius:40px 40px 0 0; margin-top:40px;
+    position:relative;
+    background:
+      radial-gradient(ellipse 60% 70% at 12% 0%, rgba(228,53,107,0.14), transparent 60%),
+      radial-gradient(ellipse 55% 60% at 95% 10%, rgba(31,166,160,0.14), transparent 60%),
+      radial-gradient(ellipse 50% 50% at 50% 100%, rgba(240,169,59,0.12), transparent 65%),
+      var(--paper);
+    color:var(--ink); padding:96px 0 40px; border-radius:40px 40px 0 0; margin-top:40px;
+    overflow:hidden;
   }
   footer.contact h2{
     font-family:var(--font-display); font-weight:800; font-size:clamp(1.9rem,4.2vw,3rem); margin:0 0 16px; max-width:18ch;
   }
   footer.contact p.lead{color:var(--ink-soft); max-width:52ch; margin:0 0 36px; font-size:1.08rem;}
-  .contact-grid{display:flex; flex-wrap:wrap; gap:14px; margin-bottom:44px;}
+  .contact-grid{display:flex; flex-wrap:wrap; gap:16px; margin-bottom:48px; position:relative; z-index:1;}
   .contact-pill{
-    font-family:var(--font-mono); font-size:0.9rem; background:rgba(27,19,48,0.06); border:1px solid rgba(27,19,48,0.14);
-    border-radius:999px; padding:11px 20px;
+    font-family:var(--font-mono); font-weight:700; font-size:1rem;
+    background:var(--paper); border:1.5px solid rgba(27,19,48,0.14);
+    border-radius:999px; padding:16px 26px;
+    display:inline-flex; align-items:center; gap:10px;
+    text-decoration:none; color:var(--ink);
+    box-shadow:0 6px 18px -10px rgba(27,19,48,0.25);
+    transition:transform .25s var(--ease), border-color .25s ease, box-shadow .25s ease, background .25s ease;
   }
+  a.contact-pill.contact-pill-cta{
+    background:var(--ink); color:var(--paper); border-color:var(--ink);
+  }
+  a.contact-pill:hover{
+    transform:translateY(-3px);
+    border-color:var(--pink);
+    box-shadow:0 14px 28px -12px rgba(228,53,107,0.45);
+  }
+  a.contact-pill.contact-pill-cta:hover{ background:var(--pink); border-color:var(--pink); }
   .contact-pill mark.edit{background:var(--pink); color:var(--paper);}
   .foot-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:40px; padding-top:44px; border-top:1px solid rgba(27,19,48,0.12);}
   @media (max-width:760px){ .foot-grid{grid-template-columns:1fr; gap:32px;} }
@@ -475,6 +527,8 @@
 </style>
 </head>
 <body>
+
+<canvas id="networkCanvas" aria-hidden="true"></canvas>
 
 <a href="#main" class="skip-link">Saltar al contenido</a>
 <div class="scroll-progress" id="scrollProgress"></div>
@@ -977,13 +1031,12 @@
     <h2>Trabajemos tu próxima activación.</h2>
     <p class="lead">Cuéntanos qué necesita la marca y armamos el formato de activación desde cero.</p>
     <div class="contact-grid">
-      <span class="contact-pill">📞 72003436 · 71536209</span>
-      <span class="contact-pill">✉️ <mark class="edit">[email]</mark></span>
-      <span class="contact-pill">📍 Av. Strongest, Calle 32 y 33 N.º 56, Achumani, La Paz, Bolivia</span>
-      <span class="contact-pill">🌐 www.konecta-andina.com</span>
+      <a href="tel:+59172003436" class="contact-pill contact-pill-cta">📞 72003436 · 71536209</a>
+      <a href="https://www.google.com/maps/search/?api=1&query=Av.+Strongest+Calle+32+y+33+56+Achumani+La+Paz+Bolivia" target="_blank" rel="noopener" class="contact-pill">📍 Av. Strongest, Calle 32 y 33 N.º 56, Achumani, La Paz</a>
+      <a href="https://www.konecta-andina.com" target="_blank" rel="noopener" class="contact-pill">🌐 www.konecta-andina.com</a>
     </div>
-    <div class="hero-actions" style="margin-bottom:56px;">
-      <a href="#contacto" class="btn">Solicita una propuesta personalizada</a>
+    <div class="hero-actions" style="margin-bottom:56px; position:relative; z-index:1;">
+      <a href="#contacto" class="btn btn-mega">Solicita una propuesta personalizada</a>
     </div>
 
     <div class="foot-grid">
@@ -1028,6 +1081,229 @@
   <img id="lbImg" src="" alt="">
   <button class="lb-nav lb-next" id="lbNext" aria-label="Siguiente">›</button>
 </div>
+
+<script>
+/* =========================================================================
+   RED DE CONEXIONES — fondo animado (HTML5 canvas, JS puro, sin librerías)
+   -------------------------------------------------------------------------
+   Idea: pequeños nodos que flotan muy lentamente y se conectan con líneas
+   finas cuando están cerca entre sí, evocando una red de networking /
+   colaboración. Todo en tonos muy sutiles (baja opacidad) para que nunca
+   compita con el contenido, solo enriquezca el fondo.
+   ========================================================================= */
+(function(){
+  "use strict";
+
+  var canvas = document.getElementById('networkCanvas');
+  if(!canvas) return;
+  var ctx = canvas.getContext('2d');
+
+  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var isDesktopPointer = window.matchMedia('(pointer: fine)').matches;
+
+  /* Paleta de la marca, en formato RGB para poder controlar la opacidad
+     de cada trazo/nodo de forma independiente. */
+  var COLORS = {
+    bg:     '27,19,48',    /* --bg   */
+    dot:    '246,239,227', /* --paper */
+    pink:   '228,53,107',  /* --pink */
+    mustard:'240,169,59',  /* --mustard */
+    teal:   '31,166,160'   /* --teal */
+  };
+  var LINE_PALETTE = [COLORS.pink, COLORS.mustard, COLORS.teal];
+
+  var width = 0, height = 0, dpr = 1;
+  var nodes = [];
+  var mouse = { x:-9999, y:-9999, active:false };
+  var rafId = null;
+  var isVisible = true;
+
+  /* ---- cuántos nodos según el tamaño de pantalla ----
+     Menos nodos y menor radio de conexión en pantallas chicas,
+     para mantener buen rendimiento en móviles. */
+  function nodeConfig(){
+    if(width < 480)  return { count:22, linkDist:110 };
+    if(width < 900)  return { count:38, linkDist:130 };
+    if(width < 1400) return { count:60, linkDist:150 };
+    return { count:80, linkDist:160 };
+  }
+
+  function rand(min, max){ return min + Math.random() * (max - min); }
+
+  function Node(){
+    this.reset(true);
+  }
+  Node.prototype.reset = function(randomPos){
+    this.x = randomPos ? rand(0, width) : rand(0, width);
+    this.y = randomPos ? rand(0, height) : rand(0, height);
+    /* velocidad muy baja: sensación de flotar, no de "videojuego" */
+    this.vx = rand(-0.10, 0.10);
+    this.vy = rand(-0.08, 0.08);
+    this.radius = rand(1.1, 2.3);
+    this.alpha = 0;
+    this.alphaTarget = rand(0.35, 0.75);
+    /* ciclo de vida: aparece, permanece, desaparece y renace en otro punto */
+    this.life = 0;
+    this.lifespan = rand(9000, 18000); /* ms */
+    this.fadeSpeed = rand(0.006, 0.014);
+    this.state = 'in'; /* in -> hold -> out */
+  };
+
+  function buildNodes(){
+    var cfg = nodeConfig();
+    nodes = [];
+    for(var i=0; i<cfg.count; i++){ nodes.push(new Node()); }
+  }
+
+  function resize(){
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = Math.floor(width * dpr);
+    canvas.height = Math.floor(height * dpr);
+    canvas.style.width = width + 'px';
+    canvas.style.height = height + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    buildNodes();
+  }
+
+  /* ---- interacción sutil con el cursor (solo escritorio) ---- */
+  if(isDesktopPointer){
+    window.addEventListener('mousemove', function(e){
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+      mouse.active = true;
+    }, { passive:true });
+    window.addEventListener('mouseleave', function(){ mouse.active = false; });
+  }
+
+  function updateNode(n, dt){
+    n.x += n.vx * dt;
+    n.y += n.vy * dt;
+
+    /* rebote suave en los bordes para que nunca "escapen" del lienzo */
+    if(n.x < -20) n.x = width + 20;
+    if(n.x > width + 20) n.x = -20;
+    if(n.y < -20) n.y = height + 20;
+    if(n.y > height + 20) n.y = -20;
+
+    n.life += dt;
+
+    if(n.state === 'in'){
+      n.alpha += n.fadeSpeed * dt * 0.06;
+      if(n.alpha >= n.alphaTarget){ n.alpha = n.alphaTarget; n.state = 'hold'; }
+    } else if(n.state === 'hold'){
+      if(n.life > n.lifespan){ n.state = 'out'; }
+    } else if(n.state === 'out'){
+      n.alpha -= n.fadeSpeed * dt * 0.06;
+      if(n.alpha <= 0){ n.reset(true); }
+    }
+  }
+
+  function draw(){
+    ctx.clearRect(0, 0, width, height);
+    ctx.fillStyle = 'rgb(' + COLORS.bg + ')';
+    ctx.fillRect(0, 0, width, height);
+
+    var cfg = nodeConfig();
+    var linkDist = cfg.linkDist;
+    var mouseRadius = 190;
+
+    /* --- conexiones --- */
+    for(var i=0; i<nodes.length; i++){
+      var a = nodes[i];
+      for(var j=i+1; j<nodes.length; j++){
+        var b = nodes[j];
+        var dx = a.x - b.x, dy = a.y - b.y;
+        var dist2 = dx*dx + dy*dy;
+        if(dist2 > linkDist*linkDist) continue;
+
+        var dist = Math.sqrt(dist2);
+        var proximity = 1 - (dist / linkDist);
+        var baseAlpha = proximity * Math.min(a.alpha, b.alpha) * 0.22;
+
+        /* brillo sutil si el cursor está cerca de esta conexión */
+        var boost = 0;
+        if(mouse.active){
+          var mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2;
+          var mdx = mx - mouse.x, mdy = my - mouse.y;
+          var mdist = Math.sqrt(mdx*mdx + mdy*mdy);
+          if(mdist < mouseRadius){ boost = (1 - mdist / mouseRadius) * 0.35; }
+        }
+
+        var color = LINE_PALETTE[(i + j) % LINE_PALETTE.length];
+        ctx.strokeStyle = 'rgba(' + color + ',' + Math.min(baseAlpha + boost, 0.55) + ')';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(b.x, b.y);
+        ctx.stroke();
+      }
+    }
+
+    /* --- nodos --- */
+    for(var k=0; k<nodes.length; k++){
+      var n = nodes[k];
+      var glow = 0;
+      if(mouse.active){
+        var ddx = n.x - mouse.x, ddy = n.y - mouse.y;
+        var ddist = Math.sqrt(ddx*ddx + ddy*ddy);
+        if(ddist < mouseRadius){ glow = (1 - ddist / mouseRadius) * 0.4; }
+      }
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.radius + glow * 1.5, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(' + COLORS.dot + ',' + Math.min(n.alpha + glow, 0.95) + ')';
+      ctx.fill();
+    }
+  }
+
+  var lastTime = null;
+  function tick(now){
+    if(!isVisible){ rafId = null; return; }
+    if(lastTime === null) lastTime = now;
+    var dt = Math.min(now - lastTime, 50); /* clamp por si la pestaña estuvo en pausa */
+    lastTime = now;
+
+    for(var i=0; i<nodes.length; i++){ updateNode(nodes[i], dt); }
+    draw();
+
+    rafId = requestAnimationFrame(tick);
+  }
+
+  function start(){
+    if(rafId !== null) return;
+    lastTime = null;
+    rafId = requestAnimationFrame(tick);
+  }
+  function stop(){
+    if(rafId !== null){ cancelAnimationFrame(rafId); rafId = null; }
+  }
+
+  /* pausar cuando la pestaña no es visible: ahorra batería y CPU */
+  document.addEventListener('visibilitychange', function(){
+    isVisible = document.visibilityState === 'visible';
+    if(isVisible && !prefersReduced){ start(); }
+    else { stop(); }
+  });
+
+  /* redimensionar con un pequeño debounce para no recalcular en cada píxel */
+  var resizeTimer = null;
+  window.addEventListener('resize', function(){
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(resize, 150);
+  });
+
+  resize();
+
+  if(prefersReduced){
+    /* Movimiento reducido: dejamos una sola composición estática, sin animar. */
+    nodes.forEach(function(n){ n.alpha = n.alphaTarget; });
+    draw();
+  } else {
+    start();
+  }
+})();
+</script>
 
 <script>
 (function(){
