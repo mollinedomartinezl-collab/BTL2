@@ -8,28 +8,28 @@
 <meta property="og:title" content="KONECTA ANDINA — Conectamos personas, movemos resultados, inspiramos experiencias">
 <meta property="og:description" content="Diseñamos y ejecutamos activaciones BTL a la medida de cada marca, con reportes claros de principio a fin.">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#1B1330">
+<meta name="theme-color" content="#0A2A40">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#1B1330;
-    --bg-soft:#241a3f;
-    --bg-softer:#2c2049;
-    --paper:#F6EFE3;
-    --paper-dim:#ece2d0;
-    --ink:#1B1330;
-    --ink-soft:#4a4266;
-    --pink:#E4356B;
-    --mustard:#F0A93B;
-    --teal:#1FA6A0;
-    --edit-bg:#F0A93B;
-    --edit-ink:#1B1330;
-    --glass-bg:rgba(27,19,48,0.5);
-    --glass-bg-strong:rgba(20,14,36,0.86);
-    --glass-border:rgba(246,239,227,0.14);
-    --line:rgba(246,239,227,0.12);
+    --bg:#0A2A40;
+    --bg-soft:#0A2E4A;
+    --bg-softer:#0F3A5C;
+    --paper:#F5F8F8;
+    --paper-dim:#E3EAEC;
+    --ink:#0A2A40;
+    --ink-soft:#48606F;
+    --pink:#6FBA11;
+    --mustard:#8FD83A;
+    --teal:#1C6FA8;
+    --edit-bg:#8FD83A;
+    --edit-ink:#0A2A40;
+    --glass-bg:rgba(10,42,64,0.5);
+    --glass-bg-strong:rgba(4,20,34,0.86);
+    --glass-border:rgba(245,248,248,0.14);
+    --line:rgba(245,248,248,0.12);
     --r-lg:28px;
     --r-md:18px;
     --r-sm:12px;
@@ -68,6 +68,15 @@
     font-weight:700; font-size:0.85em; padding:0.1em 0.45em; border-radius:4px; text-decoration:none;
   }
 
+
+  /* ===== LOGO (una sola definición en base64, reutilizada en varios
+     lugares vía background-image, para no repetir el peso del archivo) ===== */
+  .logo-mark{
+    display:inline-block; background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAAFACAMAAAD6TlWYAAAAYFBMVEXc5OBTb5S03pRjtBJ1wiiSz2COnrc1W4YALV4mUHhwh6bI57KeqsK7w9N8xEOByy1knlJGfDyHvGn9/f0EQnFtuQ8BOGmstsoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD2mXR3AAAAGHRSTlP////////////////////////////////gEcFnAAAX5klEQVR42u2dibazKBKASxF37/17YvD933RcorIVi1uuCczpPtO5ieJnURsFwCO0XQ0CggAwAAwAA8DQAsAAMAAMAEMLAAPAADAADC0ADAADwAAwtAAwAAwAA8DQAsAAMADc072Yji2GAHBDi5Pn0mgcAPrie4otqbwkt4ef/NLqawHCz1NuhLr+lnLY4+8ECE9d+9kiuvQbAer5JU4EqSK58H0AyRMhaBcnqv6WfB1A+sQasam0WMeefhnA6ok3skl24+8CSA0ALSxisgn7ZwEEEz8LC0R5PqtvAmgUQDMLlD39JoCJGSD1iF5W+/1FAM0j2AyQBoBmG2xTgvjohwDQhUUAaNJjAeD5AIMRcRjCyZbffpMbAzsAYi4Qib8I4B4/EFWCnxTKge2elkjEJExpmyQfnUyAeEjXkYSaJiuqzTakzFnxe6UJuRigkCoxqKVk4wgu87ZlRCV4Zkr6QoBV4qrZY2KIQ/AeR6wdGkkuS8VcClCj2dBptp8tAvji17J/AkFy6pTIdQAp8XBJ4Jn4BsKQvfjlGQiyfu6k3GUAKTIqfzztCFj5RePv/0dG4Tu/nuEigKhWw0Yx8gOUXzGP32j6oGYLzE8ACLhVIBUa1SpGB9Vm0M78ytkgs/4j9jEA6YbIDKizN7zwy9PHCpDDeXeAFdkUWVT0ufyQPCna1Y7N8leLJvljANKtyYGpyKpXlCZjkI74+gHLOsmnYemHAEw2x2YOsXM6ix9ruE9Ho8xJ5K0B2hJ8u1yNcubXCo8yWmVeJO8MMN4xzWZrS/hRgGpWBJm8MUB6HsCFXwaSXR4/he8AuDnZBBi/B7AA0KHvmRR+rK2Z/vL1AFOTElvCN03E1uWqXfk+HQiZKZgFhvN7pCPA4vEZADda4Y6ZPOGFnzbcGJ1Dln0IwG1+4ChExvBtMhQp6h1+DMAH8Y9EIMpbQzale4kfFmxMkVz0KQCp9whuRgORgyV8Q2ONDwMIviM4ZUYA4+hWwt8PBmgUwR/cPwac35gvxVVkdlU266qMtI8GTF/2NUeev8y14a8GYPoxAB8xca36WcILTACjHAnf1GTMBwHEBrE8pwQls9iHhV9k6DoYLcwtAernNWV+abGIn2QBqnH9bxLP49c84XZdLuHCygTNRKXErx+9Kz/h6eGHvH5N/rHBglgmLD8S4Fgbk+BL0Hvbu+CT9BdvgxJisC9iMubTAL7GoX4TBE75tXIUJtrwX8Jym3XoLstmvaM+kJAkkbbhgLLl8UnCI5UaJYV1rmisS2D3A9hlRRGl3pdU8IkDWJlVtidgp2RM8bgZwHSYm+1b5gURIhmfZIGp/zTeddmsQwEuBT4sZ1nZuVwa6ozJ+OSxl/jPQpWXhcJHAgTBivb/EdkYNr3wKfjk2Uh4fgvAVQIXiC0+mKErCx09JQLbAvCyypjDdaDMQqsRAeoyGmVUyy97fCvAZZpbAzFK07Sru65Hl02mptU31flQV378s/X6umTMsQChRbEMhmVpraGpOVLFCidF0TkokytKi452pDvWtkY81qYRG9kPTEj/Nky5mLkyprsfwNEV3MUvckiFFeNrqv9ELuHwUK7M9xDUBw8gasH/mC0heGeAS8JzG0B9d2At9U2S//JFr5ZGgO09AepNsSM/TGsB7cn1ctj/U0GUL45m1uHJGNY+7glwqRn152dw3OAfGdq/kU+xuuracdxdl0s4JZ2VMnaYAeFUw+AKZfM7WhDqjEl9XS7hnHxgt4WgJX03ToYsjPlxHIE+GRPdF+A6Ne4DsLEpBmHpUcqF3On7cgmnZaS9FaEt8FLWbnFzKPIU8ScA7PUQO04BTsZdXvzGG5MS3pNLOHFOBHwI2ucvNACFaXh+omQEmNc3B7jWMDs06zwbUm+1TiWvHs0wbzUs7fwf3BwgX+aydwDPADPEZ2KLMYmT1xx8H/7RuxeZOxN0CFvRir/RmEzBb541UgVJdW+ArqPYxWAaSia7In/NIDAiZ1/vvuTfzZK4rGkz1ZzOxoSpRXSkujfAtRrcO4nlAXAex0Vy5QbI1wB08aid9oawVT0PxkS7b9bdT3MAtjsIcQLYC2GRXLsH90UA24sAPh6/F+/BfQ3AR3YVQEgu3rzyKoDsEh2Iryijnz+Ei0MAxn67S32QEXGaP3OQQPKREujkCEaH6MDPHMJOmdU9sfDakhN2VXk/QKd8gnM2xiiByGqoe7sxwPbNCLsDbJjekU4etwZYOwIsYCfAIZTTiSC5eSjnOj1nncGwABz+rBXB5HFrgOCc1bfZkcg0WT5OozKWa0QQ7g2wdgeYbQc45m2Hws1cSaie7+f+jRFsH8QGgIP6GzOqeQH8ibpP8nN+pHpySv+Q2iyLDlw8zTGmhnnbS0KSK44kPhdg6jO5bp4bxgDCVJDI1gqPYdvLxLxb/20AZsdVJyAAp2krJm0AemE7d1rTs0DGNL2u14FLJZ1xB4XbAky9K4zAD+C8AcAlW26/AWDmDTDzAQjLBhTXrKm5HGC3oUiwdAe4bv/+JvV3OsAt5eYoC8WIrNtvF+88GOrM6iyGLfsay50xumDIK/IVquv+i289WOvEm+tNCGNZWXdNXWb6RXOYLyMBHHfHG7yXvHw8PhSg1oTk69IOKLViiBgEYUvFdfvZd6q/kwHqRrBkLtXdJnBfhpfA5m+ov5MBaiZD1OeVtosx+DLRusyhnpMHLHr/uYLn9UAtDdQ+L7fiw+jL/Bvrdv9V05sZ9ef7vOcrAHbM1TzU6rYnSq+GtXLjUkNCx8PjnCtC7gswYs6pAnHXLN0g/iH8evVxALO2e3wyQMWEGMebvLpO8k1+1AXXefZHjlU9qxuyE2iZ+ZWLqYVBrGyacNkypDcClIFYH7hk/G4B/CBWSjYS8jfU35kAG19+8jDmHGR6ednuHwAomhA3f0MYxpzLmHwhQHEDGWeF9fK9RSdFU3g6LVz/ZIDrVvd+6067ltt45tW16vrC8fcD5EewV7zAxSXzBImubjL5cIC8E+ibbqqZtNHxNwLk8gj+8eqcoplHPlxedPp+gNx22lvSnT3CPF+36v0+KzxuQcb2zDZCHUWLrxz/5RF8CsCx1mwYhwel25OLaybfDfDlBLKj+Kn73z0+G2DNjq4WEJfQEPhwgBHziz9cCP5NC3wOwJcTePC2LTSZyv5o/Ph0gFMYd/x0bRXHcQWPx8cDrNl7q30+YAjnedE9AsDtlyxreASAoQWAAWAAGACGFgAGgAFgABhaABgABoABYGiOAGFtul8MZ3MtLYUAUGnFNCdUFIVuFUu0nM6Vr8dTBID8J+1yclmuAhRLdwM/HUCuMEMBKCxeYCxoUE+A87bQUznzRdv93xYgUwACd/4Eu+q8iRsakaXQVgYYLVVDjP2hlQb+ravnBucBVIdwmrdtuy6UvLHUsKF8bvQkopMAMg3Ajjs3+N4GBPzr3z0BMo0EAq//nM4P+NMA2akAdUO4YEvZPbvo6NnbSuBywkknGpBFBeb3NsCwo4TbcQgrOrDM1/Oqb22ALwHI5oHaaQwIu+rQxZsbEeGMaGDLCixmMcDQpWPrwNlMQ/+b0uUXwxfT2unK0NRDL+oGtACZE0AAaBow387JCgP3Uc8PNcBQR8V6knoR6ZJdsObCXsIdta/cTv+LzvBipmsP32uz0vhQXcl3o+zk26fcmYhLb0C+X5m1ryPh9U9iscK8BA6H4rH5U3SPuiYS94EZ7h0p1rqb02F5Ptw7Ffbf6R9Xf/Vh9Y3wPeyL/VfFS07fBSkbJ3Ry6o5gFyFqua8Nry1LtwMcjv2enD9D6b2y8cFMpEPzObDuv7b+QLuTk+bAXZYX2pFQF5rvric5ozvT85G97ln6azQb/cB6PDZ9Cj8MOzOhO2WJRHiA2lPTVBOl+xpSBoseKzv3G90QjRMM5XTf2SlJNwGExSsc/qffKghMJ6uLv+EB6k+dk99Rgx6tpjgh2BXXPcoiuwTWORM3YlnGsi7/ZDQiQ0YaZqNsiIAt5+8Jv+IAZqxl9i3wTEfTSQShZbYdWu1DuJm3NVs8D+MepTYJnNm8lKDeSto2CuQJcgAXh910wg3wYmTeddX2HksngMWcs2OqGGu2BLIBjPLxOSfThaSgTeNXGcVOB7RwWDLGaz3JhopPZH2PjQPAdLGYwz95Puc/GdP7jWaATTrzG66HGOA0l8SNyU/J31gBOM7uiV/n7Ag/icXaYefBLuVtJL8lYy53I8+ZsPdAMboxueTkCG7MpAVeBrN3TKMoa/kNWRQn2AxwPHBxwoEaYFFHDfsrdkPEIHkCy+CXAA7fT+u0zPRyBYKMLJ9yWxNy0RJ/hZxFfXAzXJcbi/2Ab8YwiXtV6dxgEcCZbNS8HMuW4bGfEWDL61Jso/GI6TdoE3e2W4RKBLh+X9iCbMmWrSNO3GoxYsoTlcx63WURPB7KLRdmnHrlX1jhBXAxHvj+sMImWaKn1AgbwXQ6I5LqIvzVKeM+k+aouWECqqzyG5Pxs4w5SMKqABzWyk8yk+pHmWxGbABbDqBWBEuGb8HLm8W5q12O8la/nLLZjZVdsPU9vC6S8uOmUZ2bKSy2Aux1z6j1pJqLZcdv9RmtADkbrktjcdKtekm8eL5eHQdQvh43LjNFPQB23xeDCO9HPQoVlxAwAHxlYRopewAM2+LVCrDlZ9JL0wjW8U2Vx+oYKrCcVBXWtFPKhEMgOB9a7UdUlEKyZUM+MMO20XAByNZpusZASJvmymRtz1GSpQpkv7FZYyKDcI+ibXgvhyRUV4H3Brh4klo1GDHz3rGp/PeO4R5BK0oV59mxUqiqG3J6IrCSuR1Lsh9gtGkILwmJCJUwvZvNa0EQAao/KCSAnIEanWKucZnHUSutL9JhmsMBYK8Fe2uSZUVRZENDf+EAUHRQUyx8R7wc2d/oGL7jtgzQbTP+8ToZczmUxBEgpFHLpLZdBzI8syLaEDDL/ktHmgBmEsBsE8B6J0Ap+23Zo9nBD4SaccpJOtKD2U4R4MZWdyZAsy3zANjp3Lg9ALs53aLLKvoAZBLA/CCAoy4tfE6KNQFMc+Z14okJ4Oi+pEqikld2doDZ6QDHLhbM3YsxAZQ3f1VyS14SuBRRCpfl/QQwJHr0QavPEI6YkPRC2qj0uPe0RwdCIaUBJhtcFBuHMJ/q0Kd0Cov1A9k/2wgw7fAGoqYodwAUIuqIm8Lf5kivBgPWuU7xJUfM7BFwvnDxcAdYSH6gVbGVzOPIexwg/+ywPxLh1AkwwSaBpuPahzSFclaApu/K08FGfwocAQIaVxV7Aa6pWvHyXAyqC0UaJueufACC89mvvDVT+wFF5JZMqBmSfoRtjjSSBOYVHpiPoskUwfAByLvHjZpzwnrN1NTXkM5aC8pRgClDjo7p8v0AQT9rwXNVTljgg9ni4Q+wxFMVvb0USn4iZskzsryd5RCV7JIhl8g8JVBXIy0kotZX1AgTH4Bmq2eZ9QII+GzOVCWUlY0udxtps8m9x9OZvdcVYIEa580SyF+ev1Am7IDfIXUqi/PoBVCQq0iqgXkl6otS04+1EGjqBRPfC7bNcKn3agUh2QFw7iMT5phEJ5stw0QsN1podQaPVwUodH2pUoP0VYbMuPRVp/RjqI8s+c3ldS+dTReFsdtc9pJTgsICy10AQRuQ8FIy0s1es9HaqXI3gK1OxQ6WoKzrNGrzuYSWH4SRpiKI6RdHimNj7O+oYninYR5MTcRPLe8DyPsy60Q7qAlEJR3EYCNAKQxfajvW5WipdgZLhifGSqlm4nEM+jNhyj8qe7SMtRtiYYbMBAtlMHOH7Ocwc16V3xA219JI9YqWshvOsmp6PD2MWDrzqg1hQm3HLglEfJmGmbvOh8m+AE2nPMv1iilD6rhGBIWxDmnqo/44RnbYEBZCJu6dNsbCPIGUN0A5Q8f4ajPJ301Zi5TMSXNNgADkZtDF+pa6ZccAnL1SybYaSlRZ2zx2AZQrpJlcdSpcnbmUySolZesoUR9k4NdBfhRAUavny+9TpNpUPg/SCWArPq5Y9L3mezUZBs1Jk+NXlXURct360ptIU1/ecUst7QC5mjldcrcRJ6vWADOVTwwe1zkoMpK3fCJUiVnlyy4TFUqqGDmZtIvUbui+Kl1y7U3aSgWEw69hYWKf1oyypWm7mBbrFzJhuUYnzga2uvUpsP66w++s5hYbfvFM72IYdqyBMuOnkdFVOWm2zjIXHOPBT+ceAoS+FfbamD0NoPdzx1bWcPSS7KFsc7x02lkXhdVp6fBVaNK0LMtU6evrVi53eoS2760GBAFgABgABoChBYABYAB4dle1+2pWbz4n6EYAx/P5kiThz+WbDkyjEAC6AhRP1qTk7UfN7bwz/PQikVBKE/oGgOuRh/SuAOl65iBcBXAdwtzx9dVNAZILTxxUJTD5Awfm7gPIHxtK3gqQ3hMgvfLU5A+UQLj01FoV4JUa+BSAVDz3t7oa4PICyU2tMLn06HiNHxi/nd8ugLEE8ORxpAH4AEqS9x4ZvueZf+TD4+PLAT6UUt8bAQSZ38meTPJ2i3swQKoAPNeMfBzA5YFo4m1GwG3gCd/aDNDpXrBRFWwHuB4cz/1fQPrG5/EqOvpvJKGxQWIhpsnwtYTOx6qrsbAmRSh9ENPx7Q73AsOdpluR9V5XAPxdxQ6MnkwlOGui6U6QDscJr1rJmPBTAUIy5QhX5VuR6aPpXlS4lz5rKNxpQ3JxM0DgFR81mZGKowtyd7UuXEVkB2n4rQagclv+XupVqMudPP3ZzQApH8HFJk+GeyjldWsjQI11GkC7AIy5exHdRdBsnNAluACgqNITQ0C8DuF+gGm6++P4VMQLYEX0r8HhTl4ZbthtQkDzn4gE6vsrBRLoUz29hjByFTBFUlsSI1sB/ogKw2RGqqeNiBc/bTLB+V7UFAhsCao2AgQi+c6r3vIHyPdWHHlkNLFkB0CCiyCvaodpHSrc6GSAVJb1mOgHpPxQpHe2qqqKKSIWgpIcnTeoeqFMzACfev7P397VxO4FqufCjWnnBMVGgATPDidmgPGSR9FpnFhvC2NngIIiqxZ/UaMvtK+cevsycIQJEW8NBoBU762AJsNI0cSF4xBG7vXgAiKiWObEdwzDvhFMNY9IcYAJko+tVLtI8dSPG0DsBYgLKOKYIqJRnQgQdOofjUYqLONKlcv84H5E/Ez8AGL3MoMB35QFHGJCjGakskvV/ItVU1WG+MQJIMU6UR2bNINdJkSvPpz7LpuiCo1OhD86AawcBo3JwXWdZ4E9JkSMeOgyyAB5crAANIbUD+ITiSj3wi8NvaOzNnIBQKqXk1dySRHBCk3VyACpMa9IfQAmdsfrlTAkesf7RICAOZtINII/VIIBTEyCvw2gVrdRQ3x5HkDU3CIj0P2hEieATjqQOACE5PkWgFy8k4hN74RsAPh7BUBzjH4ewPjp0CongGSTBB40hMVkDBna8O/zAVIXgHSfDiTGGx8DUCgL6M1vPLXkbIDwdGqwC6DRCh8DsEIyur5TtHCKAIopvg0SGDsZf0M2xuNl0cfjSoCJG8BkC8A1l6BRgjE5FCCmb88GGD8dW7UBIJhiYb85Edu9ANF11fNkgIkrQLoBIDeuCK46DgFYYVNaJwMELo+g26pUl3fzABijs9uxZz7QGaDo9AM5GSA1jDEs6bTRN6PoXN2xAJGE9EkAraWAGjvgE59Sbd1MlbjOC8fOOlDrcdHnyQBje1ZNNSM+ACUvc/Ru6ZZpTXcrvE5exVsqZGCbCcGrR1Qt7JUhUa28Mi2skcAN0i4I2zj5Kd3oDIAuNr5a5y5gS4rJ7qiToyMRezR6FEDqMu2cyF3wzNGRDQC36FvEITs1FnaqJo/laMQTIJKlI5QeAnCd2X9qbkQInCiBsZt4J5IZ8QSI1gfSQ4Yw0aw2FuoWTgQ49yExFyDKZsQboFqHSYbHPjidpatEotw1jwe4RvPm6rnXmyXzrN38pok6qUQwlSqW7k1/p6+EJyeBRE4mzL9Tu6hV36Ks0+qlg8e7HA+wiudm+VEsfXH5T/SLmgtWU339sJ9AJd0f1AssjzN/UDneK6a/r9vMf3B8yD3Tmte1a5ZxwZ7bhI139tIPCALAADAADABDCwADwAAwAAwtAAwAA8AAMLQAMAAMAAPA0ALAADAADABDCwADwAAwAAwtADyt/R/d9ks7SY8/9AAAAABJRU5ErkJggg==");
+    background-size:contain; background-repeat:no-repeat; background-position:center;
+    flex:none;
+  }
+
   .wrap{max-width:1160px; margin:0 auto; padding:0 28px;}
   @media (max-width:640px){ .wrap{padding:0 20px;} }
 
@@ -102,7 +111,7 @@
     box-shadow:0 10px 26px -12px rgba(0,0,0,0.6);
     transition:transform .3s var(--ease), border-color .3s ease, background .3s ease;
   }
-  .menu-trigger:hover{transform:translateY(-2px); border-color:rgba(240,169,59,0.55);}
+  .menu-trigger:hover{transform:translateY(-2px); border-color:rgba(143,216,58,0.55);}
   .menu-trigger .bars{width:20px; height:14px; position:relative;}
   .menu-trigger .bars span{
     position:absolute; left:0; width:100%; height:2px; background:var(--paper); border-radius:2px;
@@ -136,14 +145,16 @@
   body.drawer-open .drawer{transform:translateX(0);}
   .drawer .drawer-brand{
     font-family:var(--font-display); font-weight:700; font-size:1.05rem; padding:0 30px; margin-bottom:36px; opacity:0.85;
+    display:flex; align-items:center; gap:10px;
   }
+  .drawer .drawer-brand .logo-mark{width:30px; height:30px;}
   .drawer nav{display:flex; flex-direction:column; gap:2px; padding:0 14px;}
   .drawer nav a{
     text-decoration:none; color:var(--paper-dim); font-family:var(--font-display); font-weight:600;
     font-size:1.05rem; padding:13px 16px; border-radius:10px; position:relative;
     transition:color .2s ease, background .2s ease, padding-left .2s ease;
   }
-  .drawer nav a:hover, .drawer nav a.active{color:var(--paper); background:rgba(246,239,227,0.06); padding-left:22px;}
+  .drawer nav a:hover, .drawer nav a.active{color:var(--paper); background:rgba(245,248,248,0.06); padding-left:22px;}
   .drawer nav a.active{color:var(--mustard);}
   .drawer-cta{padding:20px 24px 0; margin-top:auto;}
 
@@ -153,7 +164,7 @@
     display:flex; flex-direction:column; gap:14px;
   }
   .dot-nav a{
-    width:9px; height:9px; border-radius:50%; background:rgba(246,239,227,0.25);
+    width:9px; height:9px; border-radius:50%; background:rgba(245,248,248,0.25);
     border:1px solid transparent; transition:background .25s ease, transform .25s ease;
     position:relative;
   }
@@ -177,7 +188,7 @@
     transition:opacity .3s ease, transform .3s ease, border-color .3s ease;
   }
   .to-top.show{opacity:1; pointer-events:auto; transform:translateY(0);}
-  .to-top:hover{border-color:rgba(240,169,59,0.55);}
+  .to-top:hover{border-color:rgba(143,216,58,0.55);}
 
   /* ===== top bar ===== */
   header.nav{
@@ -191,8 +202,9 @@
     background:var(--glass-bg); backdrop-filter:blur(14px) saturate(140%); -webkit-backdrop-filter:blur(14px) saturate(140%);
     border-bottom:1px solid var(--glass-border); padding:12px 0;
   }
-  .brandmark{font-family:var(--font-display); font-weight:700; font-size:1.15rem; letter-spacing:-0.01em; text-decoration:none;}
-  .brandmark span{color:var(--mustard);}
+  .brandmark{display:inline-flex; align-items:center; gap:10px; font-family:var(--font-display); font-weight:700; font-size:1.1rem; letter-spacing:-0.01em; text-decoration:none;}
+  .brandmark .logo-mark{width:34px; height:34px;}
+  .brandmark span{color:var(--pink);}
   .nav-cta{
     text-decoration:none; opacity:1; background:var(--mustard); color:var(--ink); font-weight:600;
     padding:11px 22px; border-radius:999px; font-size:0.85rem; transition:background .25s ease, transform .25s ease;
@@ -207,14 +219,14 @@
     padding:16px 32px; border-radius:999px; text-decoration:none;
     background:linear-gradient(120deg, var(--pink), var(--mustard));
     color:var(--paper); border:none; cursor:pointer;
-    box-shadow:0 10px 30px -8px rgba(228,53,107,0.55);
+    box-shadow:0 10px 30px -8px rgba(111,186,17,0.55);
     transition:transform .3s var(--ease), box-shadow .3s var(--ease);
   }
-  .btn:hover{transform:translateY(-3px); box-shadow:0 16px 34px -8px rgba(228,53,107,0.65);}
-  .btn.btn-ghost{background:transparent; border:1.5px solid rgba(246,239,227,0.35); color:var(--paper); box-shadow:none;}
+  .btn:hover{transform:translateY(-3px); box-shadow:0 16px 34px -8px rgba(111,186,17,0.65);}
+  .btn.btn-ghost{background:transparent; border:1.5px solid rgba(245,248,248,0.35); color:var(--paper); box-shadow:none;}
   .btn.btn-ghost:hover{border-color:var(--mustard); color:var(--mustard); transform:translateY(-3px); box-shadow:none;}
-  .btn.btn-dark{background:var(--ink); color:var(--paper); box-shadow:0 10px 26px -10px rgba(27,19,48,0.5);}
-  .btn.btn-dark:hover{background:var(--pink); box-shadow:0 14px 30px -10px rgba(228,53,107,0.55);}
+  .btn.btn-dark{background:var(--ink); color:var(--paper); box-shadow:0 10px 26px -10px rgba(10,42,64,0.5);}
+  .btn.btn-dark:hover{background:var(--pink); box-shadow:0 14px 30px -10px rgba(111,186,17,0.55);}
 
   /* CTA principal del footer: más grande y con un brillo que respira,
      para que sea el punto focal claro de la sección final. */
@@ -222,19 +234,19 @@
     font-size:1.15rem; padding:22px 44px;
     background:linear-gradient(120deg, var(--pink), var(--mustard) 55%, var(--teal));
     background-size:200% auto;
-    box-shadow:0 18px 40px -12px rgba(228,53,107,0.55);
+    box-shadow:0 18px 40px -12px rgba(111,186,17,0.55);
     animation:mega-glow 3.2s ease-in-out infinite;
   }
   .btn-mega:hover{ transform:translateY(-4px) scale(1.02); }
   @keyframes mega-glow{
-    0%,100%{ background-position:0% 50%; box-shadow:0 18px 40px -12px rgba(228,53,107,0.55); }
-    50%{ background-position:100% 50%; box-shadow:0 18px 46px -10px rgba(31,166,160,0.5); }
+    0%,100%{ background-position:0% 50%; box-shadow:0 18px 40px -12px rgba(111,186,17,0.55); }
+    50%{ background-position:100% 50%; box-shadow:0 18px 46px -10px rgba(28,111,168,0.5); }
   }
   @media (prefers-reduced-motion: reduce){ .btn-mega{ animation:none; } }
 
   .cta-strip{
     margin-top:64px; padding:40px; border-radius:var(--r-lg);
-    background:linear-gradient(120deg, rgba(228,53,107,0.14), rgba(31,166,160,0.12));
+    background:linear-gradient(120deg, rgba(111,186,17,0.14), rgba(28,111,168,0.12));
     border:1px solid var(--glass-border);
     display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:20px;
   }
@@ -252,9 +264,9 @@
   .hero{
     position:relative; padding:150px 0 110px; overflow:hidden;
     background:
-      radial-gradient(ellipse 62% 55% at 88% -6%, rgba(228,53,107,0.30), transparent 60%),
-      radial-gradient(ellipse 55% 45% at 6% 8%, rgba(31,166,160,0.22), transparent 60%),
-      radial-gradient(ellipse 40% 40% at 50% 100%, rgba(240,169,59,0.10), transparent 65%);
+      radial-gradient(ellipse 62% 55% at 88% -6%, rgba(111,186,17,0.30), transparent 60%),
+      radial-gradient(ellipse 55% 45% at 6% 8%, rgba(28,111,168,0.22), transparent 60%),
+      radial-gradient(ellipse 40% 40% at 50% 100%, rgba(143,216,58,0.10), transparent 65%);
   }
   .hero-thread{position:absolute; inset:0; z-index:0; opacity:0.5; pointer-events:none;}
   .hero .wrap{position:relative; z-index:1;}
@@ -301,7 +313,7 @@
   p.section-sub{color:var(--paper-dim); max-width:62ch; margin:0 0 56px; font-size:1.05rem;}
 
   /* ===== SOBRE NOSOTROS ===== */
-  #sobre{background:rgba(36,26,63,0.82); backdrop-filter:blur(22px) saturate(130%); -webkit-backdrop-filter:blur(22px) saturate(130%); border:1px solid var(--glass-border); border-radius:var(--r-lg); margin:0 20px;}
+  #sobre{background:rgba(10,46,74,0.82); backdrop-filter:blur(22px) saturate(130%); -webkit-backdrop-filter:blur(22px) saturate(130%); border:1px solid var(--glass-border); border-radius:var(--r-lg); margin:0 20px;}
   @media (max-width:640px){ #sobre{margin:0 8px; border-radius:20px;} }
   .about-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:start;}
   @media (max-width:800px){ .about-grid{grid-template-columns:1fr;} }
@@ -339,28 +351,28 @@
   .tl-step:nth-child(3n+3) .pin{border-color:var(--teal); color:var(--teal);}
   .tl-content{
     border:1px solid var(--glass-border); border-radius:var(--r-md); padding:22px 26px;
-    background:rgba(246,239,227,0.03); transition:transform .3s var(--ease), border-color .3s ease;
+    background:rgba(245,248,248,0.03); transition:transform .3s var(--ease), border-color .3s ease;
   }
-  .tl-content:hover{transform:translateX(6px); border-color:rgba(240,169,59,0.4);}
+  .tl-content:hover{transform:translateX(6px); border-color:rgba(143,216,58,0.4);}
   .tl-step:hover .pin{transform:scale(1.08);}
   .tl-step h3{font-family:var(--font-display); font-size:1.25rem; margin:0 0 8px;}
   .tl-step p{color:var(--paper-dim); max-width:60ch; margin:0;}
 
   /* ===== SERVICIOS ===== */
-  .servicios{background:rgba(36,26,63,0.82); backdrop-filter:blur(22px) saturate(130%); -webkit-backdrop-filter:blur(22px) saturate(130%); border:1px solid var(--glass-border); border-radius:var(--r-lg); margin:0 20px;}
+  .servicios{background:rgba(10,46,74,0.82); backdrop-filter:blur(22px) saturate(130%); -webkit-backdrop-filter:blur(22px) saturate(130%); border:1px solid var(--glass-border); border-radius:var(--r-lg); margin:0 20px;}
   @media (max-width:640px){ .servicios{margin:0 8px; border-radius:20px;} }
   .enfoque-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:22px;}
   @media (max-width:700px){ .enfoque-grid{grid-template-columns:1fr;} }
   .enfoque-card{
     border:1px solid var(--glass-border); border-radius:var(--r-md); padding:28px;
-    background:rgba(246,239,227,0.04);
+    background:rgba(245,248,248,0.04);
     box-shadow:0 14px 28px -18px rgba(0,0,0,0.6);
     transition:transform .3s var(--ease), border-color .3s ease, background .3s ease;
   }
-  .enfoque-card:hover{transform:translateY(-6px); border-color:rgba(240,169,59,0.5); background:rgba(246,239,227,0.06);}
+  .enfoque-card:hover{transform:translateY(-6px); border-color:rgba(143,216,58,0.5); background:rgba(245,248,248,0.06);}
   .icon-badge{
     width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center;
-    background:rgba(31,166,160,0.14); color:var(--teal); margin-bottom:16px;
+    background:rgba(28,111,168,0.14); color:var(--teal); margin-bottom:16px;
   }
   .icon-badge svg{width:22px; height:22px;}
   .enfoque-card .tag{
@@ -374,11 +386,11 @@
   .casos-grid{display:grid; grid-template-columns:1fr; gap:26px; margin-top:24px;}
   .caso{
     border:1px solid var(--glass-border); border-radius:var(--r-lg); padding:32px;
-    background:linear-gradient(160deg, rgba(246,239,227,0.05), rgba(246,239,227,0.02));
+    background:linear-gradient(160deg, rgba(245,248,248,0.05), rgba(245,248,248,0.02));
     box-shadow:0 20px 40px -24px rgba(0,0,0,0.7);
     transition:transform .3s var(--ease), border-color .3s ease;
   }
-  .caso:hover{transform:translateY(-4px); border-color:rgba(228,53,107,0.35);}
+  .caso:hover{transform:translateY(-4px); border-color:rgba(111,186,17,0.35);}
   .caso-head{display:flex; flex-wrap:wrap; align-items:center; gap:14px 18px; margin-bottom:10px;}
   .caso-num{
     font-family:var(--font-mono); font-size:0.78rem; color:var(--ink); background:var(--mustard);
@@ -390,7 +402,7 @@
   .caso-desc{color:var(--paper-dim); max-width:70ch; margin:0 0 20px;}
   .caso-facts{display:flex; flex-wrap:wrap; gap:10px; margin-bottom:24px;}
   .fact{
-    font-family:var(--font-mono); font-size:0.82rem; background:rgba(246,239,227,0.08);
+    font-family:var(--font-mono); font-size:0.82rem; background:rgba(245,248,248,0.08);
     border:1px solid var(--glass-border); border-radius:8px; padding:6px 12px;
   }
   .fact b{color:var(--mustard);}
@@ -398,7 +410,7 @@
   .gallery{display:grid; grid-template-columns:repeat(auto-fill, minmax(150px, 1fr)); gap:12px;}
   @media (max-width:640px){ .gallery{grid-template-columns:repeat(2,1fr);} }
   .photo-slot{
-    aspect-ratio:4/5; border:2px dashed rgba(246,239,227,0.3); border-radius:var(--r-sm);
+    aspect-ratio:4/5; border:2px dashed rgba(245,248,248,0.3); border-radius:var(--r-sm);
     display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
     color:var(--paper-dim); font-family:var(--font-mono); font-size:0.72rem; text-align:center; padding:8px;
   }
@@ -411,7 +423,7 @@
   .photo-slot.photo:hover img{transform:scale(1.08);}
   .photo-slot.photo::after{
     content:"⤢"; position:absolute; right:8px; top:8px; width:26px; height:26px; border-radius:50%;
-    background:rgba(27,19,48,0.65); color:var(--paper); display:flex; align-items:center; justify-content:center;
+    background:rgba(10,42,64,0.65); color:var(--paper); display:flex; align-items:center; justify-content:center;
     font-size:0.85rem; opacity:0; transition:opacity .25s ease;
   }
   .photo-slot.photo:hover::after{opacity:1;}
@@ -420,22 +432,28 @@
   .pilares-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:22px;}
   .pilar-card{
     border:1px solid var(--glass-border); border-radius:var(--r-lg); padding:36px 30px;
-    background:radial-gradient(circle at 20% 0%, rgba(228,53,107,0.10), transparent 55%), rgba(246,239,227,0.03);
+    background:radial-gradient(circle at 20% 0%, rgba(111,186,17,0.10), transparent 55%), rgba(245,248,248,0.03);
     box-shadow:0 18px 36px -22px rgba(0,0,0,0.7);
     transition:transform .3s var(--ease), border-color .3s ease;
   }
-  .pilar-card:hover{transform:translateY(-6px); border-color:rgba(228,53,107,0.4);}
+  .pilar-card:hover{transform:translateY(-6px); border-color:rgba(111,186,17,0.4);}
   .pilar-card .num{font-family:var(--font-mono); color:var(--mustard); font-size:0.85rem; margin-bottom:18px; display:block;}
   .pilar-card h3{font-family:var(--font-display); font-size:1.3rem; margin:0 0 12px;}
   .pilar-card p{color:var(--paper-dim); margin:0; font-size:0.98rem;}
 
   /* ===== ELEGIRNOS (icons grid) ===== */
-  .elegirnos{background:rgba(36,26,63,0.82); backdrop-filter:blur(22px) saturate(130%); -webkit-backdrop-filter:blur(22px) saturate(130%); border:1px solid var(--glass-border); border-radius:var(--r-lg); margin:0 20px;}
+  .elegirnos{background:rgba(10,46,74,0.82); backdrop-filter:blur(22px) saturate(130%); -webkit-backdrop-filter:blur(22px) saturate(130%); border:1px solid var(--glass-border); border-radius:var(--r-lg); margin:0 20px;}
   @media (max-width:640px){ .elegirnos{margin:0 8px; border-radius:20px;} }
   .eleg-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px;}
-  .eleg-card{display:flex; gap:16px; padding:22px; border-radius:var(--r-md); background:rgba(246,239,227,0.04); border:1px solid var(--glass-border); transition:transform .3s var(--ease), border-color .3s ease;}
-  .eleg-card:hover{transform:translateY(-4px); border-color:rgba(31,166,160,0.5);}
-  .eleg-card .icon-badge{background:rgba(228,53,107,0.14); color:var(--pink); margin-bottom:0; flex:none;}
+  .eleg-card{display:flex; gap:16px; padding:22px; border-radius:var(--r-md); background:rgba(245,248,248,0.04); border:1px solid var(--glass-border); transition:transform .3s var(--ease), border-color .3s ease;}
+  .eleg-card:hover{transform:translateY(-4px); border-color:rgba(28,111,168,0.5);}
+  .eleg-card.eleg-card-strong{
+    background:linear-gradient(120deg, rgba(111,186,17,0.14), rgba(28,111,168,0.1));
+    border-color:rgba(111,186,17,0.4);
+  }
+  .eleg-card.eleg-card-strong:hover{ border-color:var(--pink); }
+  .eleg-card.eleg-card-strong h3{color:var(--mustard);}
+  .eleg-card .icon-badge{background:rgba(111,186,17,0.14); color:var(--pink); margin-bottom:0; flex:none;}
   .eleg-card h3{font-family:var(--font-display); font-size:1.05rem; margin:0 0 6px;}
   .eleg-card p{color:var(--paper-dim); font-size:0.9rem; margin:0;}
 
@@ -444,11 +462,11 @@
   @media (max-width:700px){ .porque-list{grid-template-columns:1fr;} }
   .porque-item{
     display:flex; gap:14px; padding:24px; border-radius:var(--r-md);
-    background:rgba(246,239,227,0.04); border:1px solid var(--glass-border);
+    background:rgba(245,248,248,0.04); border:1px solid var(--glass-border);
     box-shadow:0 14px 28px -18px rgba(0,0,0,0.55);
     transition:transform .3s var(--ease), border-color .3s ease;
   }
-  .porque-item:hover{transform:translateY(-4px); border-color:rgba(31,166,160,0.5);}
+  .porque-item:hover{transform:translateY(-4px); border-color:rgba(28,111,168,0.5);}
   .porque-item .bullet{
     flex:none; width:34px; height:34px; border-radius:50%; background:var(--teal); color:var(--ink);
     display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-weight:800;
@@ -460,9 +478,9 @@
   footer.contact{
     position:relative;
     background:
-      radial-gradient(ellipse 60% 70% at 12% 0%, rgba(228,53,107,0.14), transparent 60%),
-      radial-gradient(ellipse 55% 60% at 95% 10%, rgba(31,166,160,0.14), transparent 60%),
-      radial-gradient(ellipse 50% 50% at 50% 100%, rgba(240,169,59,0.12), transparent 65%),
+      radial-gradient(ellipse 60% 70% at 12% 0%, rgba(111,186,17,0.14), transparent 60%),
+      radial-gradient(ellipse 55% 60% at 95% 10%, rgba(28,111,168,0.14), transparent 60%),
+      radial-gradient(ellipse 50% 50% at 50% 100%, rgba(143,216,58,0.12), transparent 65%),
       var(--paper);
     color:var(--ink); padding:96px 0 40px; border-radius:40px 40px 0 0; margin-top:40px;
     overflow:hidden;
@@ -474,11 +492,11 @@
   .contact-grid{display:flex; flex-wrap:wrap; gap:16px; margin-bottom:48px; position:relative; z-index:1;}
   .contact-pill{
     font-family:var(--font-mono); font-weight:700; font-size:1rem;
-    background:var(--paper); border:1.5px solid rgba(27,19,48,0.14);
+    background:var(--paper); border:1.5px solid rgba(10,42,64,0.14);
     border-radius:999px; padding:16px 26px;
     display:inline-flex; align-items:center; gap:10px;
     text-decoration:none; color:var(--ink);
-    box-shadow:0 6px 18px -10px rgba(27,19,48,0.25);
+    box-shadow:0 6px 18px -10px rgba(10,42,64,0.25);
     transition:transform .25s var(--ease), border-color .25s ease, box-shadow .25s ease, background .25s ease;
   }
   a.contact-pill.contact-pill-cta{
@@ -487,24 +505,29 @@
   a.contact-pill:hover{
     transform:translateY(-3px);
     border-color:var(--pink);
-    box-shadow:0 14px 28px -12px rgba(228,53,107,0.45);
+    box-shadow:0 14px 28px -12px rgba(111,186,17,0.45);
   }
   a.contact-pill.contact-pill-cta:hover{ background:var(--pink); border-color:var(--pink); }
   .contact-pill mark.edit{background:var(--pink); color:var(--paper);}
-  .foot-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:40px; padding-top:44px; border-top:1px solid rgba(27,19,48,0.12);}
+  .foot-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:40px; padding-top:44px; border-top:1px solid rgba(10,42,64,0.12);}
+  .foot-grid.foot-grid-4{grid-template-columns:1.3fr 1fr 1fr 1fr;}
   @media (max-width:760px){ .foot-grid{grid-template-columns:1fr; gap:32px;} }
+  @media (max-width:1000px) and (min-width:761px){ .foot-grid.foot-grid-4{grid-template-columns:1fr 1fr;} }
+  .foot-brand{display:flex; align-items:center; gap:10px; margin-bottom:10px;}
+  .foot-brand .logo-mark{width:32px; height:32px;}
+  .foot-tagline{font-family:var(--font-display); font-weight:700; font-size:0.98rem; color:var(--pink); margin:0 0 12px; max-width:26ch; line-height:1.35;}
   .foot-grid h4{font-family:var(--font-mono); font-size:0.78rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink-soft); margin:0 0 16px;}
   .foot-links{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px;}
   .foot-links a{text-decoration:none; color:var(--ink); opacity:0.75; font-size:0.95rem; transition:opacity .2s ease;}
   .foot-links a:hover{opacity:1; color:var(--pink);}
   .foot-social{display:flex; gap:10px; margin-top:4px;}
   .foot-social a{
-    width:38px; height:38px; border-radius:50%; border:1px solid rgba(27,19,48,0.16);
+    width:38px; height:38px; border-radius:50%; border:1px solid rgba(10,42,64,0.16);
     display:flex; align-items:center; justify-content:center; text-decoration:none; color:var(--ink);
     transition:background .2s ease, color .2s ease, transform .2s ease;
   }
   .foot-social a:hover{background:var(--ink); color:var(--paper); transform:translateY(-3px);}
-  .foot-bottom{display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:0.8rem; color:var(--ink-soft); border-top:1px solid rgba(27,19,48,0.12); padding-top:24px; margin-top:36px;}
+  .foot-bottom{display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:0.8rem; color:var(--ink-soft); border-top:1px solid rgba(10,42,64,0.12); padding-top:24px; margin-top:36px;}
 
   /* ===== LIGHTBOX ===== */
   .lightbox{
@@ -515,12 +538,12 @@
   .lightbox.open{opacity:1; pointer-events:auto;}
   .lightbox img{max-width:88vw; max-height:82vh; border-radius:var(--r-sm); box-shadow:0 30px 60px -20px rgba(0,0,0,0.8);}
   .lightbox .lb-close, .lightbox .lb-nav{
-    position:absolute; background:rgba(246,239,227,0.1); border:1px solid var(--glass-border); color:var(--paper);
+    position:absolute; background:rgba(245,248,248,0.1); border:1px solid var(--glass-border); color:var(--paper);
     border-radius:50%; width:46px; height:46px; display:flex; align-items:center; justify-content:center;
     cursor:pointer; font-size:1.1rem; transition:background .2s ease;
   }
   .lightbox .lb-close{top:24px; right:24px;}
-  .lightbox .lb-close:hover, .lightbox .lb-nav:hover{background:rgba(246,239,227,0.2);}
+  .lightbox .lb-close:hover, .lightbox .lb-nav:hover{background:rgba(245,248,248,0.2);}
   .lightbox .lb-prev{left:24px; top:50%; transform:translateY(-50%);}
   .lightbox .lb-next{right:24px; top:50%; transform:translateY(-50%);}
   @media (max-width:640px){ .lightbox .lb-prev, .lightbox .lb-next{width:38px; height:38px;} }
@@ -538,7 +561,7 @@
 </button>
 <div class="drawer-backdrop" id="drawerBackdrop"></div>
 <aside class="drawer" id="sideDrawer" aria-label="Menú principal">
-  <div class="drawer-brand">KONECTA <span style="color:var(--mustard)">ANDINA</span></div>
+  <div class="drawer-brand"><span class="logo-mark" aria-hidden="true"></span>KONECTA <span style="color:var(--mustard)">ANDINA</span></div>
   <nav>
     <a href="#inicio" data-drawer-link>Inicio</a>
     <a href="#sobre" data-drawer-link>Sobre nosotros</a>
@@ -569,7 +592,7 @@
 
 <header class="nav" id="siteHeader">
   <div class="wrap">
-    <a href="#inicio" class="brandmark">KONECTA<span>·</span>ANDINA</a>
+    <a href="#inicio" class="brandmark"><span class="logo-mark" aria-hidden="true"></span>KONECTA<span>·</span>ANDINA</a>
     <a href="#contacto" class="nav-cta">Solicita una propuesta</a>
   </div>
 </header>
@@ -581,29 +604,30 @@
     <path d="M-50,420 C 250,250 400,480 650,300 S 1050,80 1250,150" fill="none" stroke="url(#threadGrad)" stroke-width="1.5" opacity="0.5"/>
     <defs>
       <linearGradient id="threadGrad" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0%" stop-color="#E4356B"/>
-        <stop offset="50%" stop-color="#F0A93B"/>
-        <stop offset="100%" stop-color="#1FA6A0"/>
+        <stop offset="0%" stop-color="#6FBA11"/>
+        <stop offset="50%" stop-color="#8FD83A"/>
+        <stop offset="100%" stop-color="#1C6FA8"/>
       </linearGradient>
     </defs>
   </svg>
   <div class="wrap">
-    <p class="eyebrow" data-animate="fade" style="--d:0ms">Konecta Andina · Ejecución BTL en terreno</p>
-    <h1 data-animate="fade" style="--d:80ms">Creamos experiencias que hacen <em>crecer tu marca</em>.</h1>
+    <p class="eyebrow" data-animate="fade" style="--d:0ms"><span class="logo-mark" aria-hidden="true" style="width:20px;height:20px;"></span>Konecta Andina · Soluciones comerciales integrales</p>
+    <h1 data-animate="fade" style="--d:80ms">Conectamos personas, movemos resultados, <em>inspiramos experiencias</em>.</h1>
     <p class="lead" data-animate="fade" style="--d:160ms">
-      Diseñamos y ejecutamos activaciones BTL en puntos de venta, farmacias, ferias y espacios de alto
-      tránsito, acercando tu marca al consumidor justo en el momento en que decide qué comprar —
-      con presencia de marca, impulso comercial y reportes que muestran resultados reales.
+      No somos únicamente una agencia BTL: somos el aliado comercial estratégico que diseña, ejecuta,
+      supervisa y optimiza la operación comercial de tu marca en el terreno — desde activaciones y trade
+      marketing hasta administración de cuentas y desarrollo comercial completo, con reportes que muestran
+      resultados reales.
     </p>
     <div class="hero-meta" data-animate="fade" style="--d:240ms">
+      <span><strong>Estrategia</strong> + ejecución en campo</span>
       <span><strong>Múltiples</strong> marcas activadas</span>
-      <span><strong>Amplia</strong> cobertura de zonas</span>
       <span><strong>Presencia</strong> en distintas ciudades de Bolivia</span>
       <span>Comprador incógnito incluido</span>
     </div>
     <div class="hero-actions" data-animate="fade" style="--d:320ms">
-      <a href="#contacto" class="btn">Conversemos sobre tu próxima activación</a>
-      <a href="#casos" class="btn btn-ghost">Ver casos de trabajo</a>
+      <a href="#contacto" class="btn">Conversemos sobre tu operación comercial</a>
+      <a href="#casos" class="btn btn-ghost">Ver casos de éxito</a>
     </div>
   </div>
   <div class="scroll-cue" aria-hidden="true"><span>Explora</span><span class="line"></span></div>
@@ -616,21 +640,23 @@
       <p class="section-eyebrow">Quiénes somos</p>
       <h2 class="section-title">Sobre nosotros</h2>
       <p>
-        Soy Estefany Dueri Ibáñez, fundadora y coordinadora de Konecta Andina. Lidero personalmente
-        cada activación en campo y, junto a mi equipo, ejecutamos campañas BTL de principio a fin,
-        con el mismo estándar de profesionalismo en cada punto de contacto.
+        Konecta Andina nace para resolver un problema que muchas empresas comparten: no siempre
+        tienen un departamento comercial propio, ni la estructura para ejecutarlo en terreno.
+        Nosotros asumimos ese rol. Diseñamos la estrategia, la ejecutamos en campo, supervisamos
+        cada punto de contacto y medimos los resultados para optimizar continuamente.
       </p>
       <p>
         Trabajamos con marcas de distintas industrias —protección solar, higiene infantil, salud
-        femenina, farmacia y golosinas— siempre cerca del consumidor: en punto de venta,
-        farmacias, ferias y calle. Además de activar la marca, ofrecemos <strong>comprador
-        incógnito</strong>: evaluamos la experiencia de compra y la atención en punto de venta
-        desde el otro lado del mostrador.
+        femenina, farmacia, golosinas y consumo masivo— con un rango de servicios que va desde
+        activaciones BTL y trade marketing hasta gestión de cuentas comerciales, reposición de
+        producto y <strong>comprador incógnito</strong>: evaluamos la experiencia de compra y la
+        atención en punto de venta desde el otro lado del mostrador.
       </p>
       <p>
-        Nuestro trabajo no termina cuando se arma el stand. Cada jornada se cierra con un informe
-        de resultados, así que la marca que nos contrata sabe exactamente qué pasó ese día, con
-        total transparencia sobre cómo se desarrolló su campaña.
+        No somos un proveedor puntual. Nuestro trabajo no termina cuando se arma el stand: cada
+        jornada se cierra con un informe de resultados, así que la marca que nos contrata sabe
+        exactamente qué pasó ese día — con la transparencia y el rigor de un verdadero aliado
+        estratégico, no de un tercero externo.
       </p>
     </div>
     <div data-animate="slide-left">
@@ -731,6 +757,54 @@
         <h3>Mystery shopper</h3>
         <p>Evaluamos la experiencia real de compra para que la marca conozca cómo se siente atendido su cliente, con información objetiva.</p>
       </div>
+      <div class="enfoque-card" data-animate="fade" style="--d:280ms">
+        <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
+        <span class="tag">Backoffice comercial</span>
+        <h3>Administración comercial</h3>
+        <p>Nos hacemos cargo de la operación administrativa detrás de la venta: control de stock, rendición de mercadería y coordinación con puntos de venta.</p>
+      </div>
+      <div class="enfoque-card" data-animate="fade" style="--d:320ms">
+        <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="16" r="3"/><path d="M10.5 9.5L14.5 14"/></svg></div>
+        <span class="tag">Cuentas clave</span>
+        <h3>Gestión de cuentas estratégicas</h3>
+        <p>Administramos la relación día a día con tus clientes o puntos de venta clave, como una extensión real de tu equipo comercial.</p>
+      </div>
+      <div class="enfoque-card" data-animate="fade" style="--d:360ms">
+        <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg></div>
+        <span class="tag">Punto de venta</span>
+        <h3>Trade marketing</h3>
+        <p>Diseñamos la estrategia de exhibición, visibilidad y rotación de producto en canal, para que la marca gane espacio real en el anaquel.</p>
+      </div>
+      <div class="enfoque-card" data-animate="fade" style="--d:400ms">
+        <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h7l-1 8 11-14h-8l1-6z"/></svg></div>
+        <span class="tag">Crecimiento</span>
+        <h3>Desarrollo comercial</h3>
+        <p>Identificamos oportunidades de crecimiento para tu marca y construimos el plan comercial para capturarlas, de la estrategia a la ejecución.</p>
+      </div>
+      <div class="enfoque-card" data-animate="fade" style="--d:440ms">
+        <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+        <span class="tag">Control de campo</span>
+        <h3>Supervisión comercial</h3>
+        <p>Acompañamos y supervisamos a nuestros equipos en terreno para garantizar que cada activación cumpla el estándar acordado con la marca.</p>
+      </div>
+      <div class="enfoque-card" data-animate="fade" style="--d:480ms">
+        <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div>
+        <span class="tag">A tu medida</span>
+        <h3>Soluciones integrales</h3>
+        <p>Cuando una marca no encaja en un formato estándar, diseñamos un servicio a medida combinando varias de nuestras capacidades.</p>
+      </div>
+      <div class="enfoque-card" data-animate="fade" style="--d:520ms">
+        <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="12" width="3" height="6"/><rect x="12" y="8" width="3" height="10"/><rect x="17" y="5" width="3" height="13"/></svg></div>
+        <span class="tag">Datos que guían</span>
+        <h3>Inteligencia comercial</h3>
+        <p>Convertimos los informes diarios de campo en información útil para tomar decisiones: qué funciona, dónde y por qué.</p>
+      </div>
+      <div class="enfoque-card" data-animate="fade" style="--d:560ms">
+        <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <span class="tag">Equipo en campo</span>
+        <h3>Ejecución operativa</h3>
+        <p>Reclutamos, capacitamos y coordinamos al personal que representa tu marca en cada punto de contacto, con el mismo estándar en todos.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -793,7 +867,7 @@
       <article class="caso" data-animate="fade">
         <div class="caso-head">
           <span class="caso-num">03</span>
-          <h3>ChocoBom</h3>
+          <h3>ChocoBon</h3>
           <span class="caso-zona">Reposición de producto · zona central y zona norte</span>
         </div>
         <p class="caso-desc">
@@ -883,6 +957,31 @@
         </div>
       </article>
 
+      <article class="caso" data-animate="fade">
+        <div class="caso-head">
+          <span class="caso-num">07</span>
+          <h3>Café Personalizado</h3>
+          <span class="caso-zona">Desarrollo comercial · Solución a medida</span>
+        </div>
+        <p class="caso-desc">
+          No fue una venta puntual: fue el desarrollo de una herramienta comercial exclusiva.
+          Diseñamos para una pastelería una solución completa de café en grano personalizado, con
+          su propia identidad visual, para que la marca tuviera un producto propio y diferenciado
+          dentro de su oferta.
+        </p>
+        <div class="caso-facts">
+          <span class="fact">Formato: <b>Proyecto comercial a medida</b></span>
+          <span class="fact">Entregable: <b>Producto con marca propia</b></span>
+        </div>
+        <div class="gallery">
+          <div class="photo-slot"><span class="plus">+</span>Foto</div>
+          <div class="photo-slot"><span class="plus">+</span>Foto</div>
+          <div class="photo-slot"><span class="plus">+</span>Foto</div>
+          <div class="photo-slot"><span class="plus">+</span>Foto</div>
+          <div class="photo-slot"><span class="plus">+</span>Foto</div>
+        </div>
+      </article>
+
     </div>
 
     <div class="cta-strip" data-animate="fade">
@@ -923,6 +1022,11 @@
         <h3>Mejora continua</h3>
         <p>Analizamos cada campaña para aplicar aprendizajes y elevar el estándar en la siguiente activación.</p>
       </div>
+      <div class="pilar-card" data-animate="zoom" style="--d:300ms">
+        <span class="num">06</span>
+        <h3>Soluciones integrales</h3>
+        <p>Analizamos cada empresa a fondo para ofrecer exactamente lo que necesita, no un servicio estándar.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -960,6 +1064,10 @@
       <div class="eleg-card" data-animate="fade" style="--d:300ms">
         <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.5-7-11a7 7 0 0114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.4"/></svg></div>
         <div><h3>Cobertura</h3><p>Presencia en distintas zonas de la ciudad, con proyección a otras ciudades de Bolivia.</p></div>
+      </div>
+      <div class="eleg-card eleg-card-strong" data-animate="fade" style="--d:350ms">
+        <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <div><h3>Nos convertimos en parte de tu empresa</h3><p>No somos un proveedor: trabajamos como un aliado estratégico y, cuando la marca lo necesita, asumimos el rol de su propio departamento comercial.</p></div>
       </div>
     </div>
   </div>
@@ -1028,8 +1136,8 @@
 
 <footer class="contact" id="contacto">
   <div class="wrap">
-    <h2>Trabajemos tu próxima activación.</h2>
-    <p class="lead">Cuéntanos qué necesita la marca y armamos el formato de activación desde cero.</p>
+    <h2>Hagamos crecer la operación comercial de tu marca.</h2>
+    <p class="lead">Cuéntanos qué necesita tu empresa y diseñamos, desde cero, la solución comercial adecuada — sea una activación puntual o la gestión comercial completa.</p>
     <div class="contact-grid">
       <a href="tel:+59172003436" class="contact-pill contact-pill-cta">📞 72003436 · 71536209</a>
       <a href="https://www.google.com/maps/search/?api=1&query=Av.+Strongest+Calle+32+y+33+56+Achumani+La+Paz+Bolivia" target="_blank" rel="noopener" class="contact-pill">📍 Av. Strongest, Calle 32 y 33 N.º 56, Achumani, La Paz</a>
@@ -1039,13 +1147,15 @@
       <a href="#contacto" class="btn btn-mega">Solicita una propuesta personalizada</a>
     </div>
 
-    <div class="foot-grid">
+    <div class="foot-grid foot-grid-4">
       <div>
-        <h4>Konecta Andina</h4>
-        <p style="color:var(--ink-soft); max-width:36ch; margin:0 0 18px; font-size:0.95rem;">Agencia BTL especializada en punto de venta, farmacias, calle, ferias y comprador incógnito.</p>
+        <div class="foot-brand"><span class="logo-mark" aria-hidden="true"></span><h4 style="margin:0; font-size:1.05rem; text-transform:none; letter-spacing:0; color:var(--ink); font-family:var(--font-display);">Konecta Andina</h4></div>
+        <p class="foot-tagline">Conectamos personas, movemos resultados, inspiramos experiencias.</p>
+        <p style="color:var(--ink-soft); max-width:34ch; margin:0 0 18px; font-size:0.92rem;">Aliado comercial estratégico: diseñamos, ejecutamos y supervisamos soluciones comerciales integrales para tu marca.</p>
         <div class="foot-social">
           <a href="#" aria-label="WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 11.5a8.4 8.4 0 01-9.9 8.3 8.5 8.5 0 01-4-1.4L3 20l1.6-4a8.4 8.4 0 01-1.3-4.5A8.4 8.4 0 0112 3a8.4 8.4 0 019 8.5z"/></svg></a>
           <a href="#" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 10v7M7 7v.01M12 17v-4a2 2 0 014 0v4M12 13v4"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
         </div>
       </div>
       <div>
@@ -1053,24 +1163,35 @@
         <ul class="foot-links">
           <li><a href="#sobre">Sobre nosotros</a></li>
           <li><a href="#metodologia">Cómo trabajamos</a></li>
-          <li><a href="#servicios">Servicios</a></li>
-          <li><a href="#casos">Casos</a></li>
+          <li><a href="#casos">Casos de éxito</a></li>
           <li><a href="#pilares">Nuestros pilares</a></li>
+          <li><a href="#elegirnos">¿Por qué elegirnos?</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Servicios</h4>
+        <ul class="foot-links">
+          <li><a href="#servicios">Activaciones BTL</a></li>
+          <li><a href="#servicios">Trade marketing</a></li>
+          <li><a href="#servicios">Gestión de cuentas</a></li>
+          <li><a href="#servicios">Desarrollo comercial</a></li>
+          <li><a href="#servicios">Mystery shopper</a></li>
         </ul>
       </div>
       <div>
         <h4>Contacto</h4>
         <ul class="foot-links">
           <li><a href="#contacto">Solicita una propuesta</a></li>
-          <li><a href="#elegirnos">¿Por qué elegirnos?</a></li>
-          <li><a href="#porque">¿Por qué trabajar con nosotros?</a></li>
+          <li><a href="tel:+59172003436">72003436 · 71536209</a></li>
+          <li><a href="https://www.konecta-andina.com" target="_blank" rel="noopener">www.konecta-andina.com</a></li>
+          <li>La Paz, Bolivia</li>
         </ul>
       </div>
     </div>
 
     <div class="foot-bottom">
-      <span>Konecta Andina · Ejecución en terreno</span>
-      <span><mark class="edit">[año]</mark></span>
+      <span>© <mark class="edit">[año]</mark> Konecta Andina · Soluciones comerciales integrales. Todos los derechos reservados.</span>
+      <span>Diseñado para conectar personas, mover resultados e inspirar experiencias.</span>
     </div>
   </div>
 </footer>
@@ -1104,11 +1225,11 @@
   /* Paleta de la marca, en formato RGB para poder controlar la opacidad
      de cada trazo/nodo de forma independiente. */
   var COLORS = {
-    bg:     '27,19,48',    /* --bg   */
-    dot:    '246,239,227', /* --paper */
-    pink:   '228,53,107',  /* --pink */
-    mustard:'240,169,59',  /* --mustard */
-    teal:   '31,166,160'   /* --teal */
+    bg:     '10,42,64',    /* --bg (navy) */
+    dot:    '111,186,17',  /* verde de marca — nodos = puntos del isotipo */
+    pink:   '111,186,17',  /* verde de marca */
+    mustard:'143,216,58',  /* verde claro */
+    teal:   '28,111,168'   /* azul marino de marca */
   };
   var LINE_PALETTE = [COLORS.pink, COLORS.mustard, COLORS.teal];
 
